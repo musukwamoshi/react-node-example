@@ -1,10 +1,10 @@
 import db from "../db";
-import { Appointment } from "./Article";
+import { Article } from "./Article";
 import { User } from "./User";
 
 export const Models: { [key: string]: any } = {
     User,
-    Appointment
+    Article
 };
 
 //associate classes with database connection
