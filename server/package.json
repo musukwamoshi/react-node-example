@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "\"fiore pulito server side\"",
+  "description": "\"curateddocs server side\"",
   "scripts": {
     "db:migrate": "npx knex migrate:latest",
     "db:migrate:make": "npx knex migrate:make -x ts",
@@ -22,6 +22,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "http-proxy-middleware": "^2.0.1",
+    "ngrok": "^3.2.7",
     "nodemon": "^2.0.13",
     "prettier": "^2.3.2",
     "ts-node": "^10.2.1",
@@ -31,6 +32,8 @@
     "@types/cors": "^2.8.12",
     "@types/nodemon": "^1.19.1",
     "@types/passport-local": "^1.0.34",
+    "@types/yup": "^0.29.4",
+    "@types/lodash": "^4.14.159",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
@@ -44,6 +47,7 @@
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "pg": "^8.7.1",
-    "yup": "^0.32.9"
+    "yup": "^0.29.3",
+    "lodash": "^4.17.19"
   }
 }

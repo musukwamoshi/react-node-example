@@ -1,6 +1,6 @@
 import { InferType } from "yup";
 import crypto from "crypto";
-import { toString, pick } from "lodash";
+import { toString, pick, isEmpty } from "lodash";
 
 import { ServerModel } from "./ServerModel";
 import { userSchema } from "../../shared/schemas/user";
@@ -14,7 +14,7 @@ export class User extends ServerModel implements UserType {
   email?: string;
   hash?: string;
   salt?: string;
-  isAdmin?: boolean;
+  isAdmin!: boolean | null;
   passwordResetToken?: string;
   passwordResetExpiration?: Date;
 

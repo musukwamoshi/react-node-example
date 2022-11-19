@@ -1,6 +1,6 @@
-import {date, InferType, ObjectSchema } from "yup";
-import {Model} from "objection";
-import {sharedSchema} from "../../shared/schemas/shared";
+import { date, InferType, ObjectSchema } from "yup";
+import { Model } from "objection";
+import { sharedSchema } from "../../shared/schemas/shared";
 
 export const schema = sharedSchema.clone().shape({
     createdAt: date().nullable().notRequired(),
@@ -10,7 +10,7 @@ export const schema = sharedSchema.clone().shape({
 export type ServerData = InferType<typeof schema>;
 
 
-export class ServerModel extends Model implements ServerData{
+export class ServerModel extends Model implements ServerData {
     static sharedSchema: ObjectSchema;
     id: number | undefined;
     createdAt: Date | undefined;
