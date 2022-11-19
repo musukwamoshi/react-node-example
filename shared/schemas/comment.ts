@@ -6,10 +6,10 @@ export const commentSchema = sharedDBSchema
     .clone()
     .shape({
         // inherits id, createdAt, updatedAt
-        article_id: number().notRequired(),
-        commenterName: string().max(255).nullable().required(),
-        commentContent: string().nullable().required(),
-        status: string().max(10).nullable().required(),
+        articleId: number().notRequired(),
+        commenterName: string().max(255).nullable().notRequired(),
+        commentContent: string().nullable().notRequired(),
+        status: string().max(10).nullable().notRequired(),
     })
     .required();
 

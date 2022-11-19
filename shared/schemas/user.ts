@@ -7,7 +7,6 @@ export const userSchema = sharedDBSchema
   .shape({
     // inherits id, createdAt, updatedAt
     email: string().max(100).nullable().notRequired(),
-    phoneNumber: string().max(10).nullable().required(),
     isAdmin: boolean().nullable().notRequired().default(false),
     hash: string().notRequired(),
     salt: string().notRequired()

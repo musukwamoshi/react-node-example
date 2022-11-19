@@ -7,9 +7,9 @@ export const articleSchema = sharedDBSchema
   .shape({
     // inherits id, createdAt, updatedAt
     userId: number().notRequired(),
-    title: string().max(255).nullable().required(),
-    content: string().nullable().required(),
-    status: string().max(10).nullable().required(),
+    title: string().max(255).nullable().notRequired(),
+    content: string().nullable().notRequired(),
+    status: string().max(10).nullable().notRequired(),
   })
   .required();
 

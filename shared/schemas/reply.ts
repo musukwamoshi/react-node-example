@@ -7,9 +7,9 @@ export const replySchema = sharedDBSchema
     .shape({
         // inherits id, createdAt, updatedAt
         commentId: number().notRequired(),
-        responderName: string().max(255).nullable().required(),
-        replyContent: string().nullable().required(),
-        status: string().max(10).nullable().required(),
+        responderName: string().max(255).nullable().notRequired(),
+        replyContent: string().nullable().notRequired(),
+        status: string().max(10).nullable().notRequired(),
     })
     .required();
 

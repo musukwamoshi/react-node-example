@@ -22,6 +22,12 @@
     "typescript": "^4.3.5"
   },
   "dependencies": {
-    "yup": "^0.32.9"
+    "@types/lodash": "^4.14.150",
+    "@types/luxon": "^1.24.3",
+    "@types/yup": "^0.29.4",
+    "lodash": "^4.14.15",
+    "luxon": "^1.24.1",
+    "typescript": "^3.9.3",
+    "yup": "^0.29.3"
   }
 }
