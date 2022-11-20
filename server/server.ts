@@ -9,7 +9,7 @@ app.use(cors());
 attachRoutes(app);
 
 if (process.argv[1] === __filename) {
-    const PORT = 80;
+    const PORT = process.env.SERVERPORT || 80;
     app.listen(PORT, async () => {
         console.log(`curateddocs is now running on port ${PORT}`)
     })

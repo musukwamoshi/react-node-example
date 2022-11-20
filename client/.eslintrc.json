@@ -27,9 +27,20 @@
         "@typescript-eslint/no-use-before-define": [
             "error"
         ],
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
         "react/jsx-filename-extension": [
             2,
-            { "extensions": [".js", ".jsx", ".ts", ".tsx"
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
                 ]
             }
         ],
@@ -44,23 +55,10 @@
                 "tsx": "never"
             }
         ],
-        "object-curly-newline": [
-            "error",
-            {
-                "ObjectExpression": "always",
-                "ObjectPattern": {
-                    "multiline": true
-                },
-                "ImportDeclaration": "never",
-                "ExportDeclaration": {
-                    "multiline": true,
-                    "minProperties": 3
-                }
-            }
-        ],
         "jsx-a11y/anchor-is-valid": 0,
         "jsx-quotes": [
-            2, "prefer-double"
+            2,
+            "prefer-double"
         ]
     },
     "settings": {
@@ -85,6 +83,6 @@
                     ".tsx"
                 ]
             }
-        }    
+        }
     }
 }
