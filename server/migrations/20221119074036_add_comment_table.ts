@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<void> {
         table.string('article_id').nullable();
         table.string('commenter_name').nullable();
         table.string('comment_content').nullable();
-        table.boolean('status').nullable();
+        table.boolean('status').nullable();// approved|denied
         table.timestamps(true, true);
     })
 }

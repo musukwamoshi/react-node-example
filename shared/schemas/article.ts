@@ -9,6 +9,7 @@ export const articleSchema = sharedDBSchema
     userId: number().notRequired(),
     title: string().max(255).nullable().notRequired(),
     content: string().nullable().notRequired(),
+    category: string().nullable().notRequired(),
     status: string().max(10).nullable().notRequired(),
   })
   .required();
