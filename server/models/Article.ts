@@ -13,6 +13,7 @@ export class Article extends ServerModel implements ArticleType {
   userId?: number;
   title!: string;
   content!: string;
+  category!: string;
   status!: string;
   static get relationMappings(): any {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
