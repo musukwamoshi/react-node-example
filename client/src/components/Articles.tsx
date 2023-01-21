@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { post } from '../utils/api';
 
-export function Dashboard() {
+export function Article() {
     const [testValue, setTestValue] = useState("Hello From dashboard!");
 
     const fetchFromTest = async (): Promise<any> => {

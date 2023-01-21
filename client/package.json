@@ -6,9 +6,11 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@tinymce/tinymce-react": "^4.3.0",
     "autoprefixer": "^9.8.6",
     "circular-dependency-plugin": "^5.2.2",
     "cra-define-override": "^1.0.0",
+    "formik": "^2.2.9",
     "lodash": "^4.17.21",
     "postcss": "^7.0.36",
     "react": "^17.0.2",
@@ -18,7 +20,7 @@
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.9",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1",
-    "yup": "^0.32.9"
+    "yup": "^0.32.11"
   },
   "scripts": {
     "build": "npx react-app-rewired build --colors && mkdir -p ../dist/client && cp -r build/* ../dist/client/",
