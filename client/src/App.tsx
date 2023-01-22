@@ -1,6 +1,6 @@
 import React from 'react';
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Article } from "./components/Articles";
 import { NavBar } from "./components/NavBar";
 import { Comments } from "./components/Comments";
@@ -136,9 +136,9 @@ function App() {
 				<div className="flex flex-col w-0 flex-1 overflow-hidden">
 					<main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
 						<div className="py-6">
-							<Route exact path="/" component={Article} />
-							<Route path="/article/add" component={AddArticle} />
-							<Route path="/comment" component={Comments} />
+							<Routes><Route path="/" element={<Article />} />
+								<Route path="/article/add" element={<AddArticle />} />
+								<Route path="/comment" element={<Comments />} /></Routes>
 						</div>
 					</main>
 				</div>
