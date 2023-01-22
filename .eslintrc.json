@@ -9,9 +9,9 @@
         "google"
     ],
     "globals": {
-        "__dirname":"readonly",
-        "Promise":"readonly",
-        "process":"readonly"
+        "__dirname": "readonly",
+        "Promise": "readonly",
+        "process": "readonly"
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -26,5 +26,9 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "object-curly-spacing": [
+            2,
+            "always"
+        ]
     }
 }
