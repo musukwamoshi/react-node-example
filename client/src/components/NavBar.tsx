@@ -1,8 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 export const NavBar = () => (
 	<nav className="mt-5 flex-1 px-2 space-y-1">
+		<h1 className="text-2xl font-semibold text-white">
+			BriefDocs
+		</h1>
 		<a
 			href="/"
 			className="bg-indigo-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"

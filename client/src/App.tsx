@@ -5,6 +5,7 @@ import { Article } from "./components/Articles";
 import { NavBar } from "./components/NavBar";
 import { Comments } from "./components/Comments";
 import { AddArticle } from "./components/AddArticle";
+import { ViewArticle } from './components/ViewArticle';
 
 function App() {
 	return (
@@ -136,9 +137,12 @@ function App() {
 				<div className="flex flex-col w-0 flex-1 overflow-hidden">
 					<main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
 						<div className="py-6">
-							<Routes><Route path="/" element={<Article />} />
+							<Routes>
+								<Route path="/" element={<Article />} />
 								<Route path="/article/add" element={<AddArticle />} />
-								<Route path="/comment" element={<Comments />} /></Routes>
+								<Route path="/comment" element={<Comments />} />
+								<Route path="/article" element={<ViewArticle />} />
+							</Routes>
 						</div>
 					</main>
 				</div>
