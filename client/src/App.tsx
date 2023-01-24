@@ -1,11 +1,10 @@
 import React from 'react';
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import { Article } from "./components/Articles";
-import { NavBar } from "./components/NavBar";
-import { Comments } from "./components/Comments";
-import { AddArticle } from "./components/AddArticle";
-import { ViewArticle } from './components/ViewArticle';
+import { Route, Routes } from 'react-router-dom';
+import { Articles } from './components/article/Articles';
+import { NavBar } from './components/navigation/NavBar';
+import { Comments } from './components/comment/Comments';
+import { AddArticle } from './components/article/AddArticle';
+import { ViewArticle } from './components/article/ViewArticle';
 
 function App() {
 	return (
@@ -138,9 +137,9 @@ function App() {
 					<main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
 						<div className="py-6">
 							<Routes>
-								<Route path="/" element={<Article />} />
+								<Route path="/" element={<Articles />} />
 								<Route path="/article/add" element={<AddArticle />} />
-								<Route path="/comment" element={<Comments />} />
+								<Route path="/comments" element={<Comments />} />
 								<Route path="/article" element={<ViewArticle />} />
 							</Routes>
 						</div>
