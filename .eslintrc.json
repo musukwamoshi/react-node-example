@@ -26,6 +26,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "no-tabs": 0,
         "brace-style": "off",
         "block-spacing": "off",
         "max-len": "off",
