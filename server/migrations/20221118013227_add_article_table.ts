@@ -7,7 +7,7 @@ export async function up(knex: Knex): Promise<void> {
         table.string('user_id').nullable();
         table.string('title').nullable();
         table.string('content').nullable();
-        table.string('category').nullable;//or platform
+        table.string('platform').nullable;//or platform
         table.boolean('status').nullable();
         table.timestamps(true, true);
     })

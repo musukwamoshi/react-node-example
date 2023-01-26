@@ -20,6 +20,6 @@ export async function updateArticleStatus(req: Request, res: Response): Promise<
 }
 
 export async function getAllArticles(req: Request, res: Response): Promise<void> {
-    const appointments = await Article.query();
-    res.send(appointments);
+    const articles = await Article.query();
+    res.send(articles);
 }

@@ -19,4 +19,9 @@ export async function deleteCommentById(req: Request, res: Response): Promise<vo
     res.send({});
 }
 
+export async function getAllComments(req: Request, res: Response): Promise<void> {
+    const comments = await Comment.query();
+    res.send(comments)
+}
+
 
