@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { WithNav } from '../navigation/WithNav';
 import { CommentListItem, IComment } from './CommentListItem';
 
 export const Comments = () => {
@@ -28,22 +29,24 @@ export const Comments = () => {
       repliesCount: 20,
     },
   ];
-
-  return (
-    <>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <h1 className="text-2xl font-semibold text-gray-900">
-          Comments
-        </h1>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-15">
-        {comments.map((comment: IComment) => {
-          return (
-            <CommentListItem key={comment.id} comment={comment} />
-          );
-        })
-        }
-      </div>
-    </>
-  );
+  const renderComments = (): ReactNode => {
+    return (
+      <>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <h1 className="text-2xl font-semibold text-gray-900">
+            Comments
+          </h1>
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-15">
+          {comments.map((comment: IComment) => {
+            return (
+              <CommentListItem key={comment.id} comment={comment} />
+            );
+          })
+          }
+        </div>
+      </>
+    );
+  };
+  return <WithNav>{renderComments()}</WithNav>;
 };

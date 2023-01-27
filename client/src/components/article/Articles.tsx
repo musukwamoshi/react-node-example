@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { WithNav } from '../navigation/WithNav';
 import { ArticleListItem, IArticle } from './ArticleListItem';
 
 export function Articles() {
@@ -42,23 +43,26 @@ export function Articles() {
         },
     ];
 
+    const renderArticles = (): ReactNode => {
+        return (
+            <>
+                <div className="max-w-7xl mx-auto px-10 sm:px-6 md:px-10">
+                    <h2 className="text-3xl font-bold sm:text-4xl">
+                        Articles
+                    </h2>
+                </div>
+                <div className="max-w-7xl mx-auto px-10 sm:px-6 md:px-10">
+                    {articles.map((article: IArticle) => {
+                        return (
+                            <ArticleListItem key={article.id} article={article} />
+                        );
+                    })
+                    }
+                </div>
+            </>
+        );
+    };
 
-    return (
-        <>
-            <div className="max-w-7xl mx-auto px-10 sm:px-6 md:px-10">
-                <h2 className="text-3xl font-bold sm:text-4xl">
-                    Articles
-                </h2>
-            </div>
-            <div className="max-w-7xl mx-auto px-10 sm:px-6 md:px-10">
-                {articles.map((article: IArticle) => {
-                    return (
-                        <ArticleListItem key={article.id} article={article} />
-                    );
-                })
-                }
-            </div>
-        </>
-    );
+    return <WithNav>{renderArticles}</WithNav>;
 }
 

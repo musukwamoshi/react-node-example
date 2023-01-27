@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const NavBar = () => {
+export const AdminNavBar = () => {
 	return (
 		<>
 			<nav className="mt-5 flex-1 px-2 space-y-1">

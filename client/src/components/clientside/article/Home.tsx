@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { WithNav } from '../../navigation/WithNav';
 import { ArticleItem, IArticle } from './ArticleItem';
 
 export function Home() {
@@ -43,35 +44,37 @@ export function Home() {
         },
     ];
 
+    const renderArticleItem = (): ReactNode => {
+        return (
+            <>
+                <section>
+                    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+                        <div className="max-w-3xl">
+                            <h2 className="text-3xl font-bold sm:text-4xl">
+                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod alias
+                                doloribus impedit.
+                            </h2>
+                        </div>
 
-    return (
-        <>
-            <section>
-                <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-                    <div className="max-w-3xl">
-                        <h2 className="text-3xl font-bold sm:text-4xl">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod alias
-                            doloribus impedit.
-                        </h2>
+                        <p className="hidden text-gray-500 md:mt-4 md:block">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas
+                            tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim et
+                            fermentum, augue. Aliquet amet volutpat quisque ut interdum tincidunt
+                            duis.
+                        </p>
+                        <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-1 lg:gap-16">
+                            {articles.map((article: IArticle) => {
+                                return (
+                                    <ArticleItem key={article.id} article={article} />
+                                );
+                            })
+                            }
+                        </div>
                     </div>
+                </section>
 
-                    <p className="hidden text-gray-500 md:mt-4 md:block">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas
-                        tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim et
-                        fermentum, augue. Aliquet amet volutpat quisque ut interdum tincidunt
-                        duis.
-                    </p>
-                    <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-1 lg:gap-16">
-                        {articles.map((article: IArticle) => {
-                            return (
-                                <ArticleItem key={article.id} article={article} />
-                            );
-                        })
-                        }
-                    </div>
-                </div>
-            </section>
-
-        </>
-    );
+            </>
+        );
+    };
+    return <WithNav>{renderArticleItem()}</WithNav>;
 }
