@@ -29,9 +29,9 @@ export function SignUp() {
                         }}
                         onSubmit={async (values, { setSubmitting }) => {
                             const loginObject = { email: `${values.email}`, password: `${values.password}` };
-                            const loginRequest = JSON.stringify(loginObject, null, 2);
-                            console.log(loginRequest);
-                            // const response = await post('/article/add', articleRequest);
+                            const signUpRequest = JSON.stringify(loginObject, null, 2);
+                            console.log(signUpRequest);
+                            // const response = await post('/user/add', signUpRequest);
                             setSubmitting(false);
                         }}
                     >

@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { WithNav } from '../navigation/WithNav';
+import { WithAdminNav } from '../navigation/WithAdminNav';
 import { CommentListItem, IComment } from './CommentListItem';
 
 export const Comments = () => {
@@ -48,5 +48,5 @@ export const Comments = () => {
       </>
     );
   };
-  return <WithNav>{renderComments()}</WithNav>;
+  return <WithAdminNav>{renderComments()}</WithAdminNav>;
 };

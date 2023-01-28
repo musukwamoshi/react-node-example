@@ -1,5 +1,5 @@
-import {createContext} from "react";
-import { UserType } from "../../../../shared/schemas/user"
+import { createContext } from 'react';
+import { UserType } from '../../../../shared/schemas/user';
 
 export interface Session {
     user?: UserType
@@ -11,6 +11,6 @@ export interface AuthContextData extends Session {
 }
 
 export const AuthContext = createContext<AuthContextData>({
-    setSession: () => {},
-    updateSessionUser: () => {}
-})
+    setSession: () => { },
+    updateSessionUser: () => { },
+});

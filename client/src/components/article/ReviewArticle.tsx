@@ -1,11 +1,11 @@
 import React from 'react';
-import { WithNav } from '../navigation/WithNav';
+import { WithAdminNav } from '../navigation/WithAdminNav';
 
-export function ViewArticle() {
-    // const [testValue, setTestValue] = useState('Hello From dashboard!');
+export function ReviewArticle() {
+    // const [article, setArticle] = useState('Hello From dashboard!');
 
     // const fetchFromTest = async (): Promise<any> => {
-    //     const response = await post('/test', {});
+    //     const response = await post('/article', {});
     //     setTestValue(`${response.data}`);
     // };
 
@@ -93,5 +93,5 @@ export function ViewArticle() {
             </>
         );
     };
-    return <WithNav>{renderViewArticle()}</WithNav>;
+    return <WithAdminNav>{renderViewArticle()}</WithAdminNav>;
 }

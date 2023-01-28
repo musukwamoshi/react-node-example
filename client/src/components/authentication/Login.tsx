@@ -31,7 +31,7 @@ export function Login() {
                             const loginObject = { email: `${values.email}`, password: `${values.password}` };
                             const loginRequest = JSON.stringify(loginObject, null, 2);
                             console.log(loginRequest);
-                            // const response = await post('/article/add', articleRequest);
+                            // const response = await post('/session', loginRequest);
                             setSubmitting(false);
                         }}
                     >

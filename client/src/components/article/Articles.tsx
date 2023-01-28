@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
-import { WithNav } from '../navigation/WithNav';
+import { WithAdminNav } from '../navigation/WithAdminNav';
 import { ArticleListItem, IArticle } from './ArticleListItem';
 
 export function Articles() {
     // const [articles, setArticles] = useState(null);
-    // const fetchFromTest = async (): Promise<any> => {
-    //     const response = await get('/test', {});
-    //     setTestValue(`${response.data}`);
+    // const fetchArticles = async (): Promise<any> => {
+    //     const response = await get('/article', {});
+    //     setArticles(`${response.data}`);
     // };
 
     // useEffect(() => {
@@ -46,8 +46,8 @@ export function Articles() {
     const renderArticles = (): ReactNode => {
         return (
             <>
-                <div className="max-w-7xl mx-auto px-10 sm:px-6 md:px-10">
-                    <h2 className="text-3xl font-bold sm:text-4xl">
+                <div className="max-w-7xl mx-auto px-10 sm:px-6 md:px-6">
+                    <h2 className="text-3xl px-6 sm:px-6 md:px-10 font-bold sm:text-4xl">
                         Articles
                     </h2>
                 </div>
@@ -63,6 +63,6 @@ export function Articles() {
         );
     };
 
-    return <WithNav>{renderArticles}</WithNav>;
+    return <WithAdminNav>{renderArticles()}</WithAdminNav>;
 }
 

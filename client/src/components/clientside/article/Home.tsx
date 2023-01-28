@@ -1,17 +1,17 @@
 import React, { ReactNode } from 'react';
-import { WithNav } from '../../navigation/WithNav';
+import { WithClientNav } from '../../navigation/WithClientNav';
 import { ArticleItem, IArticle } from './ArticleItem';
 
 export function Home() {
-    // const [testValue, setTestValue] = useState('Hello From dashboard!');
+    // const [articles, setArticles] = useState('Hello From dashboard!');
 
-    // const fetchFromTest = async (): Promise<any> => {
-    //     const response = await post('/test', {});
-    //     setTestValue(`${response.data}`);
+    // const fetchArticles = async (): Promise<any> => {
+    //     const response = await get('/client/articles', {});
+    //     setArticles(`${response.data}`);
     // };
 
     // useEffect(() => {
-    //     fetchFromTest();
+    //     fetchArticles;
     // });
 
     const articles = [
@@ -76,5 +76,5 @@ export function Home() {
             </>
         );
     };
-    return <WithNav>{renderArticleItem()}</WithNav>;
+    return <WithClientNav>{renderArticleItem()}</WithClientNav>;
 }

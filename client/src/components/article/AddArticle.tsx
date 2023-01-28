@@ -1,7 +1,7 @@
 import React, { ReactNode, useRef } from 'react';
 import { ErrorMessage, Field, Formik } from 'formik';
 import { Editor } from '@tinymce/tinymce-react';
-import { WithNav } from '../navigation/WithNav';
+import { WithAdminNav } from '../navigation/WithAdminNav';
 
 export function AddArticle() {
     const editorRef: any = useRef(null);
@@ -120,5 +120,5 @@ export function AddArticle() {
         );
     };
 
-    return <WithNav>{renderAddArticleForm()}</WithNav>;
+    return <WithAdminNav>{renderAddArticleForm()}</WithAdminNav>;
 }

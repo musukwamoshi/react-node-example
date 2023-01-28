@@ -9,7 +9,7 @@ export const AdminNavBar = () => {
 					BriefDocs
 				</h1>
 				<a
-					href="/"
+					href="/admin/articles/review"
 					className="bg-indigo-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
 				>
 					<svg

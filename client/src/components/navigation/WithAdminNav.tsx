@@ -1,8 +1,8 @@
-import React, { ReactElement } from 'react';
-import { AdminNavBar } from './NavBar';
+import React from 'react';
+import { AdminNavBar } from './AdminNavBar';
 
 
-export function WithNav({ children }: any): ReactElement {
+export function WithAdminNav({ children }: any) {
     return (
         <div className="App">
             <div className="h-screen flex overflow-hidden bg-gray-100">
