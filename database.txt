@@ -33,12 +33,21 @@ updated_at
 user
 id
 email
-firstName
-lastName
+first_name
+last_name
 password
 hash
 salt
 is_admin
+password_reset_token
+password_reset_expiration
+created_at
+updated_at
+
+session
+id
+user_id
+user_email
 created_at
 updated_at
 

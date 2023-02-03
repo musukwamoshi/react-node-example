@@ -6,6 +6,8 @@ export async function up(knex: Knex): Promise<void> {
     return knex.schema.createTable('users', function (table) {
         table.increments();
         table.string('email').nullable();
+        table.string('first_name').nullable();
+        table.string('last_name').nullable();
         table.string('hash').nullable();
         table.string('salt').nullable();
         table.boolean('is_admin').nullable().defaultTo(false);

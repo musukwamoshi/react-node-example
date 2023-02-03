@@ -4,13 +4,13 @@ import { WithAdminNav } from '../navigation/WithAdminNav';
 export function ReviewArticle() {
     // const [article, setArticle] = useState('Hello From dashboard!');
 
-    // const fetchFromTest = async (): Promise<any> => {
+    // const fetchArticles = async (): Promise<any> => {
     //     const response = await post('/article', {});
-    //     setTestValue(`${response.data}`);
+    //     setArticle(`${response.data}`);
     // };
 
     // useEffect(() => {
-    //     fetchFromTest();
+    //     fetchArticle();
     // });
     const renderViewArticle = () => {
         return (
