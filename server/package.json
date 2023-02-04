@@ -19,6 +19,7 @@
   "author": "mosaic",
   "license": "ISC",
   "devDependencies": {
+    "@types/cookie-session": "^2.0.44",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.1",
     "@types/node": "^16.7.10",
@@ -44,6 +45,7 @@
     "@types/passport-local": "^1.0.34",
     "@types/yup": "^0.29.4",
     "body-parser": "^1.19.0",
+    "cookie-session": "^2.0.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^10.0.0",

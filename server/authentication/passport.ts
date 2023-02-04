@@ -2,7 +2,9 @@
 import { NextFunction, Request, Response } from "express";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import { dbClient } from "../db";
 import { User } from "../models/User";
+import { validatePassword } from "../utils/auth";
 
 export const loggedIn = (req: Request, res: Response, next: NextFunction): any => {
     const user = req.user as User;
@@ -18,17 +20,28 @@ passport.use("user", new LocalStrategy(
         usernameField: "email",
     },
     async (email, password, done) => {
-        const user = await User.query().whereRaw("LOWER(email) = ?", `${email.toLowerCase()}`).first();
-        if (!user) {
-            console.debug("Incorrect email.");
-            return done(null, false)
-        }
-        if (!user.validatePassword(password)) {
-            console.debug("Incorrect Password");
-            return done(null, false)
-        }
+        const data = await dbClient.user.findUnique({ where: { email: email } });
+        console.debug("user created!");
+        if (data) {
+            const { id, isAdmin, firstName, lastName, hash, salt } = data;
+            const user = {
+                id,
+                firstName,
+                lastName,
+                email,
+                isAdmin
+            }
+            if (!user) {
+                console.debug("Incorrect email.");
+                return done(null, false)
+            }
+            if (!validatePassword(password, hash!, salt!)) {
+                console.debug("Incorrect Password");
+                return done(null, false)
+            }
 
-        return done(null, user);
+            return done(null, user);
+        }
     }
 ));
 

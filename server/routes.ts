@@ -6,6 +6,8 @@ import { createArticle, deleteArticle, getAllArticles, updateArticleStatus } fro
 import { User } from "./models/User";
 import { signIn, signUp } from "./controllers/User";
 import { testEndpoint } from "./controllers/Test";
+import { trimForLog } from "./utils/logging";
+import { loggedIn } from "./authentication/passport";
 
 
 export const attachRoutes = (app: express.Application): void => {
@@ -31,6 +33,16 @@ export const attachRoutes = (app: express.Application): void => {
   app.post("/v1/article/create", createArticle);
   app.post("/v1/article/delete", deleteArticle);
   app.post("/v1/article/status", updateArticleStatus);
+  app.get("/v1/sessions", loggedIn, async (req, res) => {
+    try {
+      const user = req.user;
+      console.log("/v1/sessions", trimForLog(user));
+      res.send({ user });
+    } catch {
+      req.logout();
+      return res.status(500).send("Login failed");
+    }
+  });
   app.post("/v1/users", signUp);
   app.post("/v1/sessions", signIn);
   app.post("/v1/test", testEndpoint);
