@@ -3,11 +3,10 @@ import { NextFunction, Request, Response } from "express";
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import { dbClient } from "../db";
-import { User } from "../models/User";
 import { validatePassword } from "../utils/auth";
 
 export const loggedIn = (req: Request, res: Response, next: NextFunction): any => {
-    const user = req.user as User;
+    const user = req.user;
     if (user) {
         next();
     } else {
@@ -52,7 +51,7 @@ passport.serializeUser((user: any, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-    const user = await User.findOne({ id });
+    const user = await dbClient.user.findUnique({ where: { id: id as number } });;
     if (user) {
         done(null, user)
     } else {

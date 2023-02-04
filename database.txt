@@ -2,19 +2,19 @@ DATABASE TABLES
 
 article
 id
-user_id
+userId
 title
 content
 status
-created_at
-updated_at
+createdAt
+updatedAt
 
 
 comment
 id
 article_id
-commenter_name
-comment_content
+commenterName
+commentContent
 status
 created_at
 updated_at
@@ -22,34 +22,34 @@ updated_at
 
 reply
 id
-comment_id
-responder_name
-reply_content
+commentId
+responderName
+replyContentContent
 status
-created_at
-updated_at
+createdAt
+updatedAt
 
 
 user
 id
 email
-first_name
-last_name
+firstName
+lastName
 password
 hash
 salt
-is_admin
-password_reset_token
-password_reset_expiration
-created_at
-updated_at
+isAdmin
+passwordResetToken
+passwordResetExpiration
+createdAt
+updatedAt
 
 session
 id
-user_id
-user_email
-created_at
-updated_at
+userId
+userEmail
+createdAt
+updatedAt
 
 
 
