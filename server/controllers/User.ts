@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import passport from "passport";
 import { dbClient } from "../db";
-import { User } from "../models/User";
 import { setPassword } from "../utils/auth";
 
 export async function signUp(req: Request, res: Response, next: NextFunction): Promise<any> {
@@ -32,8 +31,9 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
         let data = null;
         if (result) {
             data = await dbClient.user.findUnique({ where: { email: email } });
+            console.debug("user created!");
         }
-        console.debug("user created!");
+
         if (data) {
             const { id, isAdmin } = data;
             const user = {

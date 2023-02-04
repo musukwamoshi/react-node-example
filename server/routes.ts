@@ -3,7 +3,6 @@ import express from "express";
 //import passport from "passport";
 import path from "path";
 import { createArticle, deleteArticle, getAllArticles, updateArticleStatus } from "./controllers/Article";
-import { User } from "./models/User";
 import { signIn, signUp } from "./controllers/User";
 import { testEndpoint } from "./controllers/Test";
 import { trimForLog } from "./utils/logging";
@@ -21,14 +20,6 @@ export const attachRoutes = (app: express.Application): void => {
       }) as any
     );
   }
-  app.get("/v1/sessions", async (req, res) => {
-    try {
-      const user = await (req.user as User).serialize();
-      return res.send({ user });
-    } catch (error) {
-      return res.status(500).send("Login failed.Please try again.");
-    }
-  })
   app.get("/v1/articles", getAllArticles)
   app.post("/v1/article/create", createArticle);
   app.post("/v1/article/delete", deleteArticle);
