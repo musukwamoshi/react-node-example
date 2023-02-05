@@ -14,7 +14,7 @@ function AppRoutes() {
 
         <div>
             <Routes>
-                <Route path="admin/signup" element={<SignUp />} />
+                <Route path="/admin/signup" element={<SignUp />} />
                 <Route path="/admin/login" element={<Login />} />
                 <Route path="/admin/articles/review" element={<Articles />} />
                 <Route path="/admin/article/add" element={<AddArticle />} />

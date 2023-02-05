@@ -1,23 +1,45 @@
 import { Field, Formik } from 'formik';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
+import { post } from '../../utils/api';
+import { Loader } from '../common/Loader';
 
 export function SignUp() {
+    const navigate = useNavigate();
+    const notifyOnSuccess = () => toast.success('Sign up successful.You can now login.');
+    const notifyOnFailure = (error: string) => toast.error(`${error}`);
+    function timeout(delay: number) {
+        return new Promise((res) => setTimeout(res, delay));
+    }
     return (
         <>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-lg">
+                    <Toaster toastOptions={{
+                        duration: 5000,
+                        // Default options for specific types
+                        success: {
+                            duration: 3000,
+                        },
+                    }} />
                     <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
                         Sign up
                     </h1>
 
                     <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati sunt
-                        dolores deleniti inventore quaerat mollitia?
+                        Sign up as an admin to post articles.
                     </p>
                     <Formik
-                        initialValues={{ email: '', password: '' }}
+                        initialValues={{ firstName: '', lastName: '', email: '', password: '', password2: '' }}
                         validate={(values) => {
                             const errors: any = {};
+                            if (!values.firstName) {
+                                errors.firstName = 'Required';
+                            }
+                            if (!values.lastName) {
+                                errors.lastName = 'Required';
+                            }
                             if (!values.email) {
                                 errors.email = 'Required';
                             }
@@ -25,14 +47,34 @@ export function SignUp() {
                             if (!values.password) {
                                 errors.password = 'Required';
                             }
+
+                            if (values.password != values.password2) {
+                                errors.password = 'Passwords do not match';
+                            }
                             return errors;
                         }}
-                        onSubmit={async (values, { setSubmitting }) => {
-                            const loginObject = { email: `${values.email}`, password: `${values.password}` };
-                            const signUpRequest = JSON.stringify(loginObject, null, 2);
-                            console.log(signUpRequest);
-                            // const response = await post('/user/add', signUpRequest);
-                            setSubmitting(false);
+                        onSubmit={async (values, { setSubmitting, resetForm }) => {
+                            try {
+                                const signUpRequest = { firstName: `${values.firstName}`, lastName: `${values.lastName}`, email: `${values.email}`, password: `${values.password}` };
+                                console.log(signUpRequest);
+                                const response = await post('/users', signUpRequest);
+                                console.log(response);
+                                if (response.success) {
+                                    console.log('response success');
+                                    notifyOnSuccess();
+                                    resetForm({ values: { firstName: '', lastName: '', email: '', password: '', password2: '' } });
+                                    setSubmitting(false);
+                                    await timeout(2000);
+                                    navigate('/admin/login');
+                                } else {
+                                    setSubmitting(false);
+                                    notifyOnFailure(response.error);
+                                }
+                            } catch (err) {
+                                console.log(err);
+                                setSubmitting(false);
+                                notifyOnFailure('There was an error signing you up please try again');
+                            }
                         }}
                     >
                         {({
@@ -41,6 +83,34 @@ export function SignUp() {
                         }) => (
                             <form onSubmit={handleSubmit} className="mt-6 mb-0 space-y-4 rounded-lg p-8 shadow-2xl">
                                 <p className="text-lg font-medium">Sign up</p>
+
+                                <div>
+                                    <label htmlFor="firstName" className="text-sm font-medium">First Name</label>
+
+                                    <div className="relative mt-1">
+                                        <Field
+                                            name="firstName"
+                                            type="text"
+                                            id="firstName"
+                                            className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                                            placeholder="Enter first name"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label htmlFor="lastName" className="text-sm font-medium">Last Name</label>
+
+                                    <div className="relative mt-1">
+                                        <Field
+                                            name="lastName"
+                                            type="text"
+                                            id="lastName"
+                                            className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                                            placeholder="Enter last name"
+                                        />
+                                    </div>
+                                </div>
 
                                 <div>
                                     <label htmlFor="email" className="text-sm font-medium">Email</label>
@@ -111,13 +181,13 @@ export function SignUp() {
                                 </div>
 
                                 <div>
-                                    <label htmlFor="confirm-password" className="text-sm font-medium">Confirm Password</label>
+                                    <label htmlFor="password2" className="text-sm font-medium">Confirm Password</label>
 
                                     <div className="relative mt-1">
                                         <Field
-                                            name="confirm-password"
+                                            name="password2"
                                             type="password"
-                                            id="confirm-password"
+                                            id="password2"
                                             className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                                             placeholder="Confirm password"
                                         />
@@ -153,7 +223,7 @@ export function SignUp() {
                                     className="block w-full rounded-lg bg-indigo-600 px-5 py-3 text-sm font-medium text-white"
                                     disabled={isSubmitting}
                                 >
-                                    Sign up
+                                    Sign up {isSubmitting ? <Loader /> : null}
                                 </button>
                             </form>
                         )}

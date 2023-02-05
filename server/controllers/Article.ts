@@ -10,7 +10,7 @@ export async function createArticle(req: Request, res: Response): Promise<void> 
             authorId: userId
         }
     })
-    res.send({ result });
+    res.send({ data: result, success: true });
 }
 
 export async function deleteArticle(req: Request, res: Response): Promise<void> {
@@ -35,7 +35,7 @@ export async function updateArticleStatus(req: Request, res: Response): Promise<
             },
         },
     )
-    res.send({ updateArticle });
+    res.send({ data: updateArticle, success: true });
 }
 
 export async function getAllArticles(req: Request, res: Response): Promise<void> {
@@ -52,5 +52,5 @@ export async function getArticleById(req: Request, res: Response): Promise<void>
         include: { comments: true },
 
     });
-    res.send(article);
+    res.send({ data: article, success: true });
 }
