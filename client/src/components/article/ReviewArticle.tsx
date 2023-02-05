@@ -1,4 +1,5 @@
 import React from 'react';
+import WithAuth from '../authentication/WithAuth';
 import { WithAdminNav } from '../navigation/WithAdminNav';
 
 export function ReviewArticle() {
@@ -93,5 +94,5 @@ export function ReviewArticle() {
             </>
         );
     };
-    return <WithAdminNav>{renderViewArticle()}</WithAdminNav>;
+    return <WithAuth><WithAdminNav>{renderViewArticle()}</WithAdminNav></WithAuth>;
 }

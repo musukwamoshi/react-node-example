@@ -1,8 +1,10 @@
 import React, { ReactNode } from 'react';
+import WithAuth from '../authentication/WithAuth';
 import { WithAdminNav } from '../navigation/WithAdminNav';
 import { ArticleListItem, IArticle } from './ArticleListItem';
 
 export function Articles() {
+    // const { pathname } = useLocation();
     // const [articles, setArticles] = useState(null);
     // const fetchArticles = async (): Promise<any> => {
     //     const response = await get('/article', {});
@@ -10,7 +12,7 @@ export function Articles() {
     // };
 
     // useEffect(() => {
-    //     fetchArticles();
+    //     // fetchArticles();
     // });
 
     const articles = [
@@ -63,6 +65,6 @@ export function Articles() {
         );
     };
 
-    return <WithAdminNav>{renderArticles()}</WithAdminNav>;
+    return <WithAuth><WithAdminNav>{renderArticles()}</WithAdminNav></WithAuth>;
 }
 

@@ -2,6 +2,7 @@ import React, { ReactNode, useRef } from 'react';
 import { ErrorMessage, Field, Formik } from 'formik';
 import { Editor } from '@tinymce/tinymce-react';
 import { WithAdminNav } from '../navigation/WithAdminNav';
+import WithAuth from '../authentication/WithAuth';
 
 export function AddArticle() {
     const editorRef: any = useRef(null);
@@ -120,5 +121,5 @@ export function AddArticle() {
         );
     };
 
-    return <WithAdminNav>{renderAddArticleForm()}</WithAdminNav>;
+    return <WithAuth><WithAdminNav>{renderAddArticleForm()}</WithAdminNav></WithAuth>;
 }
