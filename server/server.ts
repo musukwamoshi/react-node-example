@@ -17,6 +17,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(helmet());
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 attachRoutes(app);
 
 if (process.argv[1] === __filename) {

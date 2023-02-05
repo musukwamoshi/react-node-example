@@ -11,7 +11,7 @@ export async function createComment(req: Request, res: Response): Promise<void> 
             articleId
         }
     })
-    res.send({ result });
+    res.send({ data: result, success: true });
 }
 
 export async function deleteComment(req: Request, res: Response): Promise<void> {
@@ -53,7 +53,7 @@ export async function getCommentsByArticleId(req: Request, res: Response): Promi
         include: { article: true }
 
     });
-    res.send(comments);
+    res.send({ data: comments, success: true });
 }
 
 

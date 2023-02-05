@@ -53,5 +53,5 @@ export async function getRepliesByCommentId(req: Request, res: Response): Promis
         include: { comment: true }
 
     });
-    res.send(replies);
+    res.send({ data: replies, success: true });
 }
