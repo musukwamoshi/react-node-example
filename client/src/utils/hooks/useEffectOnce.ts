@@ -1,3 +1,3 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
-export const useEffectOnce = (hook:()=>void):void => useEffect(hook, []);
+export const useEffectOnce = (hook: () => void): void => useEffect(hook, []);

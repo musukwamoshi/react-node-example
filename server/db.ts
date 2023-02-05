@@ -1,15 +1,5 @@
-import {config} from "dotenv";
-import {knexSnakeCaseMappers} from "objection";
-import knex from "knex";
+import { PrismaClient } from "@prisma/client";
 
-config({path:`${__dirname}/../.env`})
+const prisma = new PrismaClient();
 
-const db = knex({
-    debug: process.env.KNEX_DEBUG ==="true",
-    client: "pg",
-    connection: process.env.DATABASE_URL,
-    ...knexSnakeCaseMappers()
-});
-
-export default db;
-
+export { prisma as dbClient };

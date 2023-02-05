@@ -1,25 +1,56 @@
 import { Request, Response } from "express";
-import { Article } from "../models/Article";
+import { dbClient } from "../db";
 
 export async function createArticle(req: Request, res: Response): Promise<void> {
-    //think about submitting entire request body
-    await Article.query().insert(req.body);
-    res.send({});
+    const { title, content, userId } = req.body;
+    const result = await dbClient.article.create({
+        data: {
+            title,
+            content,
+            authorId: userId
+        }
+    })
+    res.send({ data: result, success: true });
 }
 
 export async function deleteArticle(req: Request, res: Response): Promise<void> {
     const { id } = req.body;
-    await Article.query().deleteById(id);
-    res.send({});
+    const deletedUser = await dbClient.article.delete({
+        where: {
+            id: id,
+        },
+    })
+    res.send({ data: deletedUser, success: true });
 }
 
 export async function updateArticleStatus(req: Request, res: Response): Promise<void> {
     const { id, status } = req.body;
-    await Article.query().findById(id).patch({ status: status });
-    res.send({});
+    const updateArticle = dbClient.article.update(
+        {
+            where: {
+                id: id
+            },
+            data: {
+                approved: status
+            },
+        },
+    )
+    res.send({ data: updateArticle, success: true });
 }
 
 export async function getAllArticles(req: Request, res: Response): Promise<void> {
-    const appointments = await Article.query();
-    res.send(appointments);
+    const articles = await dbClient.article.findMany({ include: { author: true } });
+    res.send(articles);
+}
+
+export async function getArticleById(req: Request, res: Response): Promise<void> {
+    const { id } = req.body;
+    const article = await dbClient.article.findUnique({
+        where: {
+            id: id
+        },
+        include: { comments: true },
+
+    });
+    res.send({ data: article, success: true });
 }
