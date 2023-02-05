@@ -31,8 +31,6 @@ const run = async (path: any, method: any, headers?: any, body?: any) => {
         body, credentials: 'include',
         headers, method,
     });
-    console.log('inside api util');
-    console.log(response);
     const { ok } = response;
     let result;
     try {
@@ -46,7 +44,7 @@ const run = async (path: any, method: any, headers?: any, body?: any) => {
     throw new Error(result.error || `Error:${response.statusText}`);
 };
 
-export const get = async (path: any, query: any) => run(`${path}${buildQueryString(query)}`, Method.GET);
+export const get = async (path: any, query?: any) => run(`${path}${buildQueryString(query)}`, Method.GET);
 
 export const post = async (path: any, body: any) => {
     const { preppedHeaders, preppedBody } = await prepSubmission(body || {});

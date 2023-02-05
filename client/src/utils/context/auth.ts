@@ -1,5 +1,12 @@
 import { createContext } from 'react';
-import { UserType } from '../../../../shared/schemas/user';
+
+interface UserType {
+    id: number,
+    firstName: string,
+    lastName: string,
+    email: string,
+    isAdmin: boolean
+}
 
 export interface Session {
     user?: UserType
@@ -7,10 +14,10 @@ export interface Session {
 
 export interface AuthContextData extends Session {
     setSession: (session: Session) => void;
-    updateSessionUser: (user: UserType | undefined, attributes: any) => void;
+    // updateSessionUser: (user: Object | undefined, attributes: any) => void;
 }
 
 export const AuthContext = createContext<AuthContextData>({
     setSession: () => { },
-    updateSessionUser: () => { },
+    // updateSessionUser: () => { },
 });

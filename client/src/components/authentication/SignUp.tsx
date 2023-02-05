@@ -1,17 +1,14 @@
 import { Field, Formik } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { post } from '../../utils/api';
 import { Loader } from '../common/Loader';
+import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
+import { timeout } from '../../utils/common/delay';
 
 export function SignUp() {
     const navigate = useNavigate();
-    const notifyOnSuccess = () => toast.success('Sign up successful.You can now login.');
-    const notifyOnFailure = (error: string) => toast.error(`${error}`);
-    function timeout(delay: number) {
-        return new Promise((res) => setTimeout(res, delay));
-    }
     return (
         <>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
@@ -61,7 +58,8 @@ export function SignUp() {
                                 console.log(response);
                                 if (response.success) {
                                     console.log('response success');
-                                    notifyOnSuccess();
+                                    const successMessage = 'Sign up successful.You can now login.';
+                                    notifyOnSuccess(successMessage);
                                     resetForm({ values: { firstName: '', lastName: '', email: '', password: '', password2: '' } });
                                     setSubmitting(false);
                                     await timeout(2000);

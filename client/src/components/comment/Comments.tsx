@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import WithAuth from '../authentication/WithAuth';
 import { WithAdminNav } from '../navigation/WithAdminNav';
 import { CommentListItem, IComment } from './CommentListItem';
 
@@ -48,5 +49,5 @@ export const Comments = () => {
       </>
     );
   };
-  return <WithAdminNav>{renderComments()}</WithAdminNav>;
+  return <WithAuth><WithAdminNav>{renderComments()}</WithAdminNav></WithAuth>;
 };

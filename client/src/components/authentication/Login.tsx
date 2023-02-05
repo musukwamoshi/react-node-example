@@ -1,18 +1,30 @@
 import { Field, Formik } from 'formik';
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { post } from '../../utils/api';
+import { timeout } from '../../utils/common/delay';
+import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
 
 export function Login() {
+    const navigate = useNavigate();
     return (
         <>
             <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-lg">
+                    <Toaster toastOptions={{
+                        duration: 5000,
+                        // Default options for specific types
+                        success: {
+                            duration: 3000,
+                        },
+                    }} />
                     <h1 className="text-center text-2xl font-bold text-indigo-600 sm:text-3xl">
-                        Login as admin
+                        Login
                     </h1>
 
                     <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati sunt
-                        dolores deleniti inventore quaerat mollitia?
+                        Login as admin to post articles
                     </p>
                     <Formik
                         initialValues={{ email: '', password: '' }}
@@ -27,12 +39,30 @@ export function Login() {
                             }
                             return errors;
                         }}
-                        onSubmit={async (values, { setSubmitting }) => {
+                        onSubmit={async (values, { setSubmitting, resetForm }) => {
                             const loginObject = { email: `${values.email}`, password: `${values.password}` };
                             const loginRequest = JSON.stringify(loginObject, null, 2);
                             console.log(loginRequest);
-                            // const response = await post('/session', loginRequest);
-                            setSubmitting(false);
+                            try {
+                                const response = await post('/session', loginRequest);
+                                console.log(response);
+                                if (response.success) {
+                                    console.log('response success');
+                                    const successMessage = 'Login successful.';
+                                    notifyOnSuccess(successMessage);
+                                    resetForm({ values: { email: '', password: '' } });
+                                    setSubmitting(false);
+                                    await timeout(2000);
+                                    navigate('/admin/articles/review');
+                                } else {
+                                    setSubmitting(false);
+                                    notifyOnFailure(response.error);
+                                }
+                            } catch (err) {
+                                console.log(err);
+                                setSubmitting(false);
+                                notifyOnFailure('There was an error signing you up please try again');
+                            }
                         }}
                     >
                         {({
