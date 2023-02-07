@@ -4,8 +4,6 @@ import { dbClient } from "../db";
 import { setPassword } from "../utils/auth";
 
 export async function signUp(req: Request, res: Response, next: NextFunction): Promise<any> {
-    console.log("request incoming");
-    console.log(req.body);
     const { firstName, lastName, email, password } = req.body;
     if (!email) {
         return res.status(400).send({ error: "Email is required", success: false });
@@ -74,12 +72,10 @@ export async function signIn(req: Request, res: Response, next: NextFunction): P
             return res.send({ data: user, success: true });
         });
     })(req, res, next);
-
-    res.send({});
 }
 
 export const signOut = (req: Request, res: Response): any => {
     req.logout();
     req.session = null;
-    return res.send({});
+    return res.send({ success: true });
 }

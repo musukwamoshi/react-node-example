@@ -3,9 +3,8 @@ import express from "express";
 //import passport from "passport";
 import path from "path";
 import { createArticle, deleteArticle, getAllArticles, updateArticleStatus } from "./controllers/Article";
-import { signIn, signUp } from "./controllers/User";
+import { signIn, signOut, signUp } from "./controllers/User";
 import { testEndpoint } from "./controllers/Test";
-import { trimForLog } from "./utils/logging";
 import { loggedIn } from "./authentication/passport";
 
 
@@ -27,7 +26,6 @@ export const attachRoutes = (app: express.Application): void => {
   app.get("/v1/sessions", loggedIn, async (req, res) => {
     try {
       const user = req.user;
-      console.log("/v1/sessions", trimForLog(user));
       res.send({ user });
     } catch {
       req.logout();
@@ -36,7 +34,8 @@ export const attachRoutes = (app: express.Application): void => {
   });
   app.post("/v1/users", signUp);
   app.post("/v1/sessions", signIn);
-  app.post("/v1/test", testEndpoint);
+  app.post("/v1/logout", signOut);
+  app.post("/v1/test", loggedIn, testEndpoint);
   /**
    * SPA API
   */
