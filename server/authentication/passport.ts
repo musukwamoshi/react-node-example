@@ -20,27 +20,22 @@ passport.use("user", new LocalStrategy(
     },
     async (email, password, done) => {
         const data = await dbClient.user.findUnique({ where: { email: email } });
-        console.debug("user created!");
-        if (data) {
-            const { id, isAdmin, firstName, lastName, hash, salt } = data;
-            const user = {
-                id,
-                firstName,
-                lastName,
-                email,
-                isAdmin
-            }
-            if (!user) {
-                console.debug("Incorrect email.");
-                return done(null, false)
-            }
-            if (!validatePassword(password, hash!, salt!)) {
-                console.debug("Incorrect Password");
-                return done(null, false)
-            }
-
-            return done(null, user);
+        if (!data) {
+            return done(null, false)
         }
+        const { id, isAdmin, firstName, lastName, hash, salt } = data;
+        const user = {
+            id,
+            firstName,
+            lastName,
+            email,
+            isAdmin
+        }
+        if (!validatePassword(password, hash!, salt!)) {
+            return done(null, false)
+        }
+
+        return done(null, user);
     }
 ));
 
