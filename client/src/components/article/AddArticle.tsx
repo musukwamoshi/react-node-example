@@ -36,7 +36,7 @@ export function AddArticle() {
                                 try {
                                     const articleRequest = { title: `${values.title}`, platform: `${values.platform}`, content: `${editorRef.current.getContent()}` };
                                     console.log(articleRequest);
-                                    const response = await post('/article/add', articleRequest);
+                                    const response = await post('/article/create', articleRequest);
                                     if (response.success) {
                                         console.log('response success');
                                         const successMessage = 'Article was submitted successfully.You can now review';
