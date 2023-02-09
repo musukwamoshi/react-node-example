@@ -3,8 +3,13 @@ import { ErrorMessage, Field, Formik } from 'formik';
 import { Editor } from '@tinymce/tinymce-react';
 import { WithAdminNav } from '../navigation/WithAdminNav';
 import WithAuth from '../authentication/WithAuth';
+import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
+import { timeout } from '../../utils/common/delay';
+import { useNavigate } from 'react-router-dom';
+import { post } from '../../utils/api';
 
 export function AddArticle() {
+    const navigate = useNavigate();
     const editorRef: any = useRef(null);
     const renderAddArticleForm = (): ReactNode => {
         return (
@@ -27,12 +32,27 @@ export function AddArticle() {
                                 }
                                 return errors;
                             }}
-                            onSubmit={async (values, { setSubmitting }) => {
-                                const articleObject = { title: `${values.title}`, platform: `${values.platform}`, content: `${editorRef.current.getContent()}` };
-                                const articleRequest = JSON.stringify(articleObject, null, 2);
-                                console.log(articleRequest);
-                                // const response = await post('/article/add', articleRequest);
-                                setSubmitting(false);
+                            onSubmit={async (values, { setSubmitting, resetForm }) => {
+                                try {
+                                    const articleRequest = { title: `${values.title}`, platform: `${values.platform}`, content: `${editorRef.current.getContent()}` };
+                                    console.log(articleRequest);
+                                    const response = await post('/article/create', articleRequest);
+                                    if (response.success) {
+                                        console.log('response success');
+                                        const successMessage = 'Article was submitted successfully.You can now review';
+                                        notifyOnSuccess(successMessage);
+                                        resetForm({ values: { title: '', platform: '' } });
+                                        setSubmitting(false);
+                                        await timeout(2000);
+                                        navigate('/admin/articles/review');
+                                    } else {
+                                        setSubmitting(false);
+                                        notifyOnFailure(response.error);
+                                    }
+                                } catch (err) {
+                                    setSubmitting(false);
+                                    notifyOnFailure('There was an error submitting the article.Please try again!');
+                                }
                             }}
                         >
                             {({
