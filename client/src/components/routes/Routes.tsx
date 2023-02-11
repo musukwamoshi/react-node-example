@@ -21,8 +21,8 @@ function AppRoutes() {
                 <Route path="/admin/article/add" element={<AddArticle />} />
                 <Route path="/admin/comments/review" element={<Comments />} />
                 <Route path="/" element={<Home />} />
-                <Route path="/article" element={<ViewArticle />} />
-                <Route path="/admin/article" element={<ReviewArticle />} />
+                <Route path="/article/:id" element={<ViewArticle />} />
+                <Route path="/admin/article/:id" element={<ReviewArticle />} />
             </Routes>
         </div>
     );

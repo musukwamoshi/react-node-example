@@ -1,12 +1,14 @@
 import { Field, Formik } from 'formik';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { post } from '../../utils/api';
 import { timeout } from '../../utils/common/delay';
 import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
+import { AuthContext } from '../../utils/context/auth';
 
 export function Login() {
+    const { setSession } = useContext(AuthContext);
     const navigate = useNavigate();
     return (
         <>
@@ -41,10 +43,9 @@ export function Login() {
                         }}
                         onSubmit={async (values, { setSubmitting, resetForm }) => {
                             const loginRequest = { email: `${values.email}`, password: `${values.password}` };
-                            console.log(loginRequest);
                             try {
                                 const response = await post('/sessions', loginRequest);
-                                console.log(response);
+                                setSession(response);
                                 if (response.success) {
                                     const successMessage = 'Login successful.';
                                     notifyOnSuccess(successMessage);

@@ -2,7 +2,7 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 import express from "express";
 //import passport from "passport";
 import path from "path";
-import { createArticle, deleteArticle, getAllArticles, updateArticleStatus } from "./controllers/Article";
+import { createArticle, deleteArticle, getAllArticles, getArticleById, updateArticleStatus } from "./controllers/Article";
 import { signIn, signOut, signUp } from "./controllers/User";
 import { testEndpoint } from "./controllers/Test";
 import { loggedIn } from "./authentication/passport";
@@ -20,6 +20,7 @@ export const attachRoutes = (app: express.Application): void => {
     );
   }
   app.get("/v1/articles", getAllArticles)
+  app.post("/v1/article", getArticleById)
   app.post("/v1/article/create", createArticle);
   app.post("/v1/article/delete", deleteArticle);
   app.post("/v1/article/status", updateArticleStatus);
