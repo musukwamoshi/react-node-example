@@ -1,16 +1,22 @@
 import { Request, Response } from "express";
+import { toNumber } from "lodash";
 import { dbClient } from "../db";
 
 export async function createArticle(req: Request, res: Response): Promise<void> {
     const { title, content, userId } = req.body;
-    const result = await dbClient.article.create({
-        data: {
-            title,
-            content,
-            authorId: userId
-        }
-    })
-    res.send({ data: result, success: true });
+    try {
+        const result = await dbClient.article.create({
+            data: {
+                title,
+                content,
+                authorId: userId,
+                approved: false
+            }
+        })
+        res.send({ data: result, success: true });
+    } catch (err: any) {
+        res.send({ message: "Something went wrong please try again!", success: false });
+    }
 }
 
 export async function deleteArticle(req: Request, res: Response): Promise<void> {
@@ -47,7 +53,7 @@ export async function getArticleById(req: Request, res: Response): Promise<void>
     const { id } = req.body;
     const article = await dbClient.article.findUnique({
         where: {
-            id: id
+            id: toNumber(id)
         },
         include: { comments: true },
 
