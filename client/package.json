@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 3000",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && mkdir -p ../dist/client && cp -r dist/* ../dist/client/",
     "preview": "vite preview"
   },
   "dependencies": {
