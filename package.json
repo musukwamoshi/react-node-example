@@ -12,7 +12,7 @@
     "build:server": "cd server && npm run build",
     "clean": "rm -rf dist && npm run clean:client",
     "clean:client": "cd client && npm run clean",
-    "heroku-postbuild": "npm run install:shared && npm run install:server && npm run install:client && npm run build",
+    "heroku-postbuild": "npm run install:shared && npm run install:server && npm run install:client:forcedev && npm run build",
     "install:client": "cd client && npm install",
     "install:client:forcedev": "cd client && npm install --only=dev",
     "install:server": "cd server && npm install",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "typescript": "^4.3.5"
   }
 }
