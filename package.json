@@ -12,7 +12,7 @@
     "build:server": "cd server && npm run build",
     "clean": "rm -rf dist && npm run clean:client",
     "clean:client": "cd client && npm run clean",
-    "heroku-postbuild": "npm run install:shared && npm run install:server && npm run install:client:forcedev && npm run install:client && npm run build && npm run uninstall:client",
+    "heroku-postbuild": "npm run install:shared && npm run install:server && npm run install:client && npm run build && npm run uninstall:client",
     "install:client": "cd client && npm install",
     "install:client:forcedev": "cd client && npm install --only=dev",
     "install:server": "cd server && npm install",
