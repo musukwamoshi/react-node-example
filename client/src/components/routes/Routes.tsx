@@ -12,7 +12,6 @@ import { ViewArticle } from '../clientside/article/ViewArticle';
 
 function AppRoutes() {
     return (
-
         <div>
             <Routes>
                 <Route path="/admin/signup" element={<SignUp />} />
@@ -20,9 +19,9 @@ function AppRoutes() {
                 <Route path="/admin/articles/review" element={<Articles />} />
                 <Route path="/admin/article/add" element={<AddArticle />} />
                 <Route path="/admin/comments/review" element={<Comments />} />
+                <Route path="/admin/article/:id" element={<ReviewArticle />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/article/:id" element={<ViewArticle />} />
-                <Route path="/admin/article/:id" element={<ReviewArticle />} />
             </Routes>
         </div>
     );

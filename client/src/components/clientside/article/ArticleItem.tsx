@@ -1,12 +1,20 @@
 import React from 'react';
+import { generatePath, useNavigate } from 'react-router-dom';
+
+interface IAuthor {
+    id: number,
+    firstName: string,
+    lastName: string,
+    email: string
+}
 
 export interface IArticle {
     id: number,
     title: string,
     platform: string,
     content: string,
-    image: string,
-    datePublished: string,
+    createdAt: string,
+    author: IAuthor
 };
 
 export interface ArticleProps {
@@ -14,6 +22,15 @@ export interface ArticleProps {
 }
 
 export function ArticleItem({ article }: ArticleProps) {
+    const navigate = useNavigate();
+    const handleProceed = (e: any) => {
+        e.preventDefault();
+        navigate(generatePath('/article/:id', { id: article.id.toString() }));
+    };
+    const dateFormatter = (date: string) => {
+        const d = new Date(date);
+        return d.toDateString();
+    };
     return (
         <>
             <article className="ring-indigo-50">
@@ -25,7 +42,7 @@ export function ArticleItem({ article }: ArticleProps) {
                         <div className="flex items-center gap-1">
                             <p className="text-xs font-medium">
                                 <time dateTime="2022-10-10" className="text-xs text-gray-500">
-                                    {article.datePublished}
+                                    {dateFormatter(article.createdAt)}
                                 </time></p>
                         </div>
                     </div>
@@ -36,14 +53,16 @@ export function ArticleItem({ article }: ArticleProps) {
                             <a href="" className="hover:underline"> {article.title} </a>
                         </h3>
 
-                        <p className="mt-1 text-sm text-gray-700">
-                            {article.content}
-                        </p>
+                        <div className="mt-1 text-sm text-gray-700 line-clamp-3">
+                            <div className="no-tailwindcss-base"
+                                dangerouslySetInnerHTML={{ __html: article?.content ? article?.content : '' }}
+                            />
+                        </div>
 
                         <div className="mt-4 sm:flex sm:items-center content-evenly sm:gap-2">
                             <div className="flex items-center text-gray-500">
                                 <a
-                                    href="#"
+                                    onClick={handleProceed}
                                     className="group inline-flex items-center gap-1 text-sm font-medium text-blue-600"
                                 >
                                     Read more
@@ -58,7 +77,7 @@ export function ArticleItem({ article }: ArticleProps) {
                             </div>
 
                             <p className="mt-2 text-xs font-medium text-gray-500 sm:mt-0">
-                                Author <a href="" className="underline hover:text-gray-700">Moshi</a>
+                                Author <a href="" className="underline hover:text-gray-700">{article?.author.firstName}</a>
                             </p>
                         </div>
                     </div>

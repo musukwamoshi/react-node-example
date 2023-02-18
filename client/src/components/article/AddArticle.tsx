@@ -45,10 +45,8 @@ export function AddArticle() {
                             onSubmit={async (values, { setSubmitting, resetForm }) => {
                                 try {
                                     const articleRequest = { userId: user?.id, title: `${values.title}`, platform: `${values.platform}`, content: `${editorRef.current.getContent()}` };
-                                    console.log(articleRequest);
                                     const response = await post('/article/create', articleRequest);
                                     if (response.success) {
-                                        console.log('response success');
                                         const successMessage = 'Article was submitted successfully.You can now review';
                                         notifyOnSuccess(successMessage);
                                         resetForm({ values: { userId: null, title: '', platform: '' } });
@@ -56,7 +54,6 @@ export function AddArticle() {
                                         await timeout(2000);
                                         navigate('/admin/articles/review');
                                     } else {
-                                        console.log(response);
                                         setSubmitting(false);
                                         notifyOnFailure(response.message);
                                     }

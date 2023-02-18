@@ -26,14 +26,13 @@ export function ReviewArticle() {
                     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold sm:text-4xl">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quod alias
-                                doloribus impedit.
+                                {article?.title}
                             </h2>
                         </div>
-                        <div className="lg:py-16">
-                            <article className="space-y-4 text-gray-600">
-                                {article?.content}
-                            </article>
+                        <div>
+                            <div className="no-tailwindcss-base"
+                                dangerouslySetInnerHTML={{ __html: article?.content ? article?.content : '' }}
+                            />
                         </div>
                     </div>
                 </section>
