@@ -1,7 +1,11 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "\"curateddocs server side\"",
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.6.0"
+  },
+  "description": "\"briefdocs server side\"",
   "scripts": {
     "clean": "cd .. && npm run clean",
     "db:reset": "./scripts/resetdb.sh",

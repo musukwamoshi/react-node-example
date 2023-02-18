@@ -1,6 +1,10 @@
 {
   "name": "shared",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.6.0"
+  },
   "description": "shared components",
   "main": "index.js",
   "scripts": {

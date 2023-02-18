@@ -1,6 +1,10 @@
 {
-  "name": "meinframework",
+  "name": "briefdocs",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.6.0"
+  },
   "description": "",
   "scripts": {
     "build": "npm run build:client && npm run build:server",
