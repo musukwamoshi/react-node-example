@@ -33,7 +33,9 @@ export function ArticleListItem({ article }: ArticleProps) {
                     </a>
 
                     <p className="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
-                        {article.content}
+                        <div className="no-tailwindcss-base"
+                            dangerouslySetInnerHTML={{ __html: article?.content ? article?.content : '' }}
+                        />
                     </p>
 
                     <a onClick={handleProceed}

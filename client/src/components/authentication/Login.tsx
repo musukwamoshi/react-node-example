@@ -51,8 +51,8 @@ export function Login() {
                                     notifyOnSuccess(successMessage);
                                     resetForm({ values: { email: '', password: '' } });
                                     setSubmitting(false);
-                                    await timeout(1000);
-                                    navigate('/admin/articles/review');
+                                    await timeout(2000);
+                                    return navigate('/admin/articles/review', { replace: true });
                                 } else {
                                     setSubmitting(false);
                                     notifyOnFailure(response.error);
@@ -109,7 +109,7 @@ export function Login() {
 
                                 <p className="text-center text-sm text-gray-500">
                                     No account?
-                                    <a className="underline" href="">Sign up</a>
+                                    <a className="underline" href="/admin/signup">Sign up</a>
                                 </p>
                             </form>
                         )}
