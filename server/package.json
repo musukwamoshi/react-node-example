@@ -11,7 +11,7 @@
     "build": "tsc --build",
     "postbuild": "cp package.json ../dist/server/package.json && cp ../shared/package.json ../dist/shared/package.json && cp -r -L ./fonts ../dist/server/fonts && cp -r ./images ../dist/server/images && cd ../dist/server && npm install --only=production",
     "server": "cd ../dist/server && node server.js",
-    "db:migrate": "npx knex migrate:latest",
+    "db:migrate": "npx prisma migrate deploy",
     "db:migrate:make": "npx knex migrate:make -x ts",
     "start": "ts-node devServer.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
