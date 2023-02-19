@@ -16,8 +16,27 @@ export function Home() {
     useEffectOnce(() => {
         fetchArticles();
     });
+    const renderDefault = (): ReactNode => {
+        return (
+            <>
+                <p>There are currently no articles posted.</p>
+            </>
+        );
+    };
 
-    const renderArticleItem = (): ReactNode => {
+    const renderArticleList = (): ReactNode => {
+        return (
+            <>
+                {articles.map((article: IArticle) => {
+                    return (
+                        <ArticleItem key={article.id} article={article} />
+                    );
+                })
+                }
+            </>
+        );
+    };
+    const renderArticles = (): ReactNode => {
         return (
             <>
                 <section>
@@ -36,12 +55,7 @@ export function Home() {
                             duis.
                         </p>
                         <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-1 lg:gap-16">
-                            {articles.map((article: IArticle) => {
-                                return (
-                                    <ArticleItem key={article.id} article={article} />
-                                );
-                            })
-                            }
+                            {articles.length > 0 ? renderArticleList() : renderDefault()}
                         </div>
                     </div>
                 </section>
@@ -49,5 +63,5 @@ export function Home() {
             </>
         );
     };
-    return <WithClientNav>{renderArticleItem()}</WithClientNav>;
+    return <WithClientNav>{renderArticles()}</WithClientNav>;
 }
