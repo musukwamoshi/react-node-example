@@ -8,6 +8,7 @@ import { Home } from '../clientside/article/Home';
 import { Login } from '../authentication/Login';
 import { SignUp } from '../authentication/SignUp';
 import { ViewArticle } from '../clientside/article/ViewArticle';
+import { About } from '../clientside/article/about';
 
 
 function AppRoutes() {
@@ -21,6 +22,7 @@ function AppRoutes() {
                 <Route path="/admin/comments/review" element={<Comments />} />
                 <Route path="/admin/article/:id" element={<ReviewArticle />} />
                 <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
                 <Route path="/article/:id" element={<ViewArticle />} />
             </Routes>
         </div>

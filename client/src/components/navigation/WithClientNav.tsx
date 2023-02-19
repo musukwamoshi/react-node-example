@@ -61,9 +61,8 @@ export function WithClientNav({ children }: any): ReactElement {
                         aria-label="Site Nav"
                         className="hidden items-center justify-center gap-8 text-sm font-medium lg:flex lg:w-0 lg:flex-1"
                     >
-                        <a className="text-gray-900" href="">About</a>
-                        <a className="text-gray-900" href="">Articles</a>
-                        <a className="text-gray-900" href="">Projects</a>
+                        <a className="text-gray-900" href="/about">About</a>
+                        <a className="text-gray-900" href="/">Articles</a>
                         <a className="text-gray-900" href="">Use</a>
                     </nav>
 
@@ -110,9 +109,8 @@ export function WithClientNav({ children }: any): ReactElement {
                     <nav
                         className="flex items-center justify-center overflow-x-auto p-4 text-sm font-medium"
                     >
-                        <a className="flex-shrink-0 pl-4 text-gray-900" href="">About</a>
-                        <a className="flex-shrink-0 pl-4 text-gray-900" href="">Articles</a>
-                        <a className="flex-shrink-0 pl-4 text-gray-900" href="">Projects</a>
+                        <a className="flex-shrink-0 pl-4 text-gray-900" href="/about">About</a>
+                        <a className="flex-shrink-0 pl-4 text-gray-900" href="/">Articles</a>
                         <a className="flex-shrink-0 pl-4 text-gray-900" href="">Use</a>
                     </nav>
                 </div>

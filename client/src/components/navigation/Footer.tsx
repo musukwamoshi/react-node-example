@@ -4,8 +4,8 @@ export const Footer = () => {
     return (
         <footer aria-label="Site Footer" className="bg-white">
             <div className="max-w-screen-xl px-4 pt-16 pb-8 mx-auto sm:px-6 lg:px-8 lg:pt-24">
-                <div className="text-center">
-                    <h2 className="text-3xl font-extrabold text-gray-900 sm:text-5xl">
+                {/* <div className="text-center">
+                    <h2 className="text-2xl font-extrabold text-gray-900 sm:text-5xl">
                         Become a writer?
                     </h2>
 
@@ -19,7 +19,7 @@ export const Footer = () => {
                     >
                         Get Started
                     </a>
-                </div>
+                </div> */}
 
                 <div
                     className="pt-8 mt-16 border-t border-gray-100 sm:flex sm:items-center sm:justify-between lg:mt-24"
