@@ -24,7 +24,7 @@ app.use(express.urlencoded({
 attachRoutes(app);
 
 if (process.argv[1] === __filename) {
-    const PORT = process.env.SERVERPORT || 80;
+    const PORT = process.env.PORT || 3001;
     app.listen(PORT, async () => {
         console.log(`curateddocs is now running on port ${PORT}`)
     })
