@@ -1,2 +1,2 @@
-release: server/scripts/release-heroku.sh
-web: server/scripts/start-heroku.sh
+release: bash server/scripts/release-heroku.sh
+web: bash server/scripts/start-heroku.sh
