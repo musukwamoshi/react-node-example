@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cors from "cors";
 import cookieSession from "cookie-session";
 import passport from "passport";
+import { requestLogger } from "./middleware/loggingmiddleware";
 
 
 export const app = express();
@@ -21,11 +22,12 @@ app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+app.use(requestLogger);
 attachRoutes(app);
 
 if (process.argv[1] === __filename) {
     const PORT = process.env.PORT || 3001;
     app.listen(PORT, async () => {
-        console.log(`curateddocs is now running on port ${PORT}`)
+        console.log(`briefdocs is now running on port ${PORT}`)
     })
 }
