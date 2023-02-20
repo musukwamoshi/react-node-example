@@ -4,7 +4,7 @@ import express from "express";
 import path from "path";
 import { createArticle, deleteArticle, getAllArticles, getArticleById, updateArticleStatus } from "./controllers/Article";
 import { signIn, signOut, signUp } from "./controllers/User";
-import { testEndpoint } from "./controllers/Test";
+import { HealthCheck } from "./controllers/Test";
 import { loggedIn } from "./authentication/passport";
 
 
@@ -36,7 +36,7 @@ export const attachRoutes = (app: express.Application): void => {
   app.post("/v1/users", signUp);
   app.post("/v1/sessions", signIn);
   app.post("/v1/logout", signOut);
-  app.post("/v1/test", loggedIn, testEndpoint);
+  app.post("/v1/health/check", HealthCheck);
   /**
    * SPA API
   */
