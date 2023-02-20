@@ -16,7 +16,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(helmet({ contentSecurityPolicy: { useDefaults: true, directives: { 'script-src': ["'self'", "https://cdn.tiny.cloud/"], 'img-src': ["'self'", "https://tailwindui.com/"], } } }));
+app.use(helmet({ contentSecurityPolicy: { useDefaults: true, directives: { 'script-src': ["'self'", "https://cdn.tiny.cloud/"], 'img-src': ["'self'", "https://tailwindui.com/", "https://sp.tinymce.com/", "http://www.w3.org/"], } } }));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
