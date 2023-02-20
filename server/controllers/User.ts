@@ -40,7 +40,8 @@ export async function signUp(req: Request, res: Response, next: NextFunction): P
                 id,
                 firstName,
                 lastName,
-                email, isAdmin
+                email,
+                isAdmin
             }
             req.login(user, async err => {
                 if (err) {

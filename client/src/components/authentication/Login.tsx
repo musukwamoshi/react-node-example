@@ -45,9 +45,9 @@ export function Login() {
                             const loginRequest = { email: `${values.email}`, password: `${values.password}` };
                             try {
                                 const response = await post('/sessions', loginRequest);
-                                setSession(response);
                                 if (response.success) {
                                     const successMessage = 'Login successful.';
+                                    setSession(response.data);
                                     notifyOnSuccess(successMessage);
                                     resetForm({ values: { email: '', password: '' } });
                                     setSubmitting(false);
