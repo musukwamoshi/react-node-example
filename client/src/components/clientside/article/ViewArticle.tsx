@@ -21,8 +21,8 @@ export function ViewArticle() {
         return (
             <>
                 <section>
-                    <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-                        <div className="max-w-3xl">
+                    <div className="mx-auto max-w-screen-lg px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+                        <div className="max-w-3xl py-6">
                             <h2 className="text-3xl font-bold sm:text-4xl">
                                 {article?.title}
                             </h2>
