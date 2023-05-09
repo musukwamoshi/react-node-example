@@ -3,9 +3,10 @@ import express from "express";
 //import passport from "passport";
 import path from "path";
 import { createArticle, deleteArticle, getAllArticles, getArticleById, updateArticleStatus } from "./controllers/Article";
-import { signIn, signOut, signUp } from "./controllers/User";
+import { passwordReset, signIn, signOut, signUp } from "./controllers/User";
 import { HealthCheck } from "./controllers/Test";
 import { loggedIn } from "./authentication/passport";
+import { createComment, getAllComments, getCommentsByArticleId } from "./controllers/Comment";
 
 
 export const attachRoutes = (app: express.Application): void => {
@@ -19,11 +20,21 @@ export const attachRoutes = (app: express.Application): void => {
       }) as any
     );
   }
+  //articles
   app.get("/v1/articles", getAllArticles)
   app.post("/v1/article", getArticleById)
   app.post("/v1/article/create", createArticle);
   app.post("/v1/article/delete", deleteArticle);
   app.post("/v1/article/status", updateArticleStatus);
+  //comments
+  app.post("/v1/comment/add", createComment);
+  app.get("/v1/comments", getAllComments);
+  app.post("/v1/comments", getCommentsByArticleId);
+
+
+
+
+  //users
   app.get("/v1/sessions", loggedIn, async (req, res) => {
     try {
       const user = req.user;
@@ -36,6 +47,7 @@ export const attachRoutes = (app: express.Application): void => {
   app.post("/v1/users", signUp);
   app.post("/v1/sessions", signIn);
   app.post("/v1/logout", signOut);
+  app.post("/v1/password/reset", passwordReset);
   app.post("/v1/health/check", HealthCheck);
   /**
    * SPA API
