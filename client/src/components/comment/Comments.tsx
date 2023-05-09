@@ -1,35 +1,45 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import WithAuth from '../authentication/WithAuth';
 import { WithAdminNav } from '../navigation/WithAdminNav';
 import { CommentListItem, IComment } from './CommentListItem';
+import { useEffectOnce } from '../../utils/hooks/useEffectOnce';
+import { get } from '../../utils/api';
 
 export const Comments = () => {
-  const comments = [
-    {
-      id: 1,
-      articleId: 1,
-      commenterName: 'John',
-      commentContent: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,accusantium temporibus iure delectus ut totam natus nesciunt ex?Ducimus, enim.',
-      article: { id: 1, title: 'Question about Livewire Rendering and Alpine JS' },
-      repliesCount: 10,
-    },
-    {
-      id: 2,
-      articleId: 2,
-      commenterName: 'John',
-      commentContent: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,accusantium temporibus iure delectus ut totam natus nesciunt ex?Ducimus, enim.',
-      article: { id: 1, title: 'Question about Livewire Rendering and Alpine JS' },
-      repliesCount: 15,
-    },
-    {
-      id: 3,
-      articleId: 3,
-      commenterName: 'John',
-      commentContent: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusamus,accusantium temporibus iure delectus ut totam natus nesciunt ex?Ducimus, enim.',
-      article: { id: 1, title: 'Question about Livewire Rendering and Alpine JS' },
-      repliesCount: 20,
-    },
-  ];
+  const [comments, setComments] = useState<Array<IComment>>([]);
+
+  const fetchComments = async (): Promise<any> => {
+    const response = await get('/comments', {});
+    setComments(response);
+  };
+
+  useEffectOnce(() => {
+    fetchComments();
+  });
+
+
+  const renderCommentList = (): ReactNode => {
+    return (
+      <>
+        {comments.map((comment: IComment) => {
+          return (
+            <CommentListItem key={comment.id} comment={comment} />
+          );
+        })
+        }
+      </>
+    );
+  };
+
+
+  const renderDefault = (): ReactNode => {
+    return (
+      <>
+        <p>There are currently no comments.</p>
+      </>
+    );
+  };
+
   const renderComments = (): ReactNode => {
     return (
       <>
@@ -39,12 +49,7 @@ export const Comments = () => {
           </h1>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-15">
-          {comments.map((comment: IComment) => {
-            return (
-              <CommentListItem key={comment.id} comment={comment} />
-            );
-          })
-          }
+          {comments.length > 0 ? renderCommentList() : renderDefault()}
         </div>
       </>
     );

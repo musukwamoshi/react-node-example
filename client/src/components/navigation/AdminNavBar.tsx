@@ -1,7 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { post } from '../../utils/api';
 
 export const AdminNavBar = () => {
+	const navigate = useNavigate();
+	const handleLogOut = async (e: any): Promise<any> => {
+		const response = await post('/logout', {});
+		e.preventDefault();
+		if (response.success) {
+			navigate('/admin/login');
+		} else {
+			console.log(response);
+		}
+	};
+
 	return (
 		<>
 			<nav className="mt-5 flex-1 px-2 space-y-1">
@@ -70,6 +82,27 @@ export const AdminNavBar = () => {
 						/>
 					</svg>
 					Comments
+				</Link>
+
+				<Link to="#" onClick={handleLogOut}
+					className="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+				>
+					<svg
+						className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						aria-hidden="true"
+					>
+						<path
+							strokeLinecap="round"
+							strokeLinejoin="round"
+							strokeWidth="2"
+							d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+						/>
+					</svg>
+					Log Out
 				</Link>
 
 			</nav>

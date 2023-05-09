@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cors from "cors";
 import cookieSession from "cookie-session";
 import passport from "passport";
+import { requestLogger } from "./middleware/loggingmiddleware";
 
 
 export const app = express();
@@ -15,17 +16,18 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: { useDefaults: true, directives: { 'script-src': ["'self'", "https://cdn.tiny.cloud/"], 'img-src': ["'self'", "https://tailwindui.com/", "https://sp.tinymce.com/", "http://www.w3.org/"], } } }));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({
     extended: true
 }));
+app.use(requestLogger);
 attachRoutes(app);
 
 if (process.argv[1] === __filename) {
-    const PORT = process.env.SERVERPORT || 80;
+    const PORT = process.env.PORT || 3001;
     app.listen(PORT, async () => {
-        console.log(`curateddocs is now running on port ${PORT}`)
+        console.log(`briefdocs is now running on port ${PORT}`)
     })
 }

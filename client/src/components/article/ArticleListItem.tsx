@@ -1,12 +1,12 @@
 import React from 'react';
+import { generatePath, useNavigate } from 'react-router-dom';
 
 export interface IArticle {
     id: number,
     title: string,
-    platform: string,
     content: string,
-    image: string,
     datePublished: string,
+    author: object
 };
 
 export interface ArticleProps {
@@ -14,6 +14,11 @@ export interface ArticleProps {
 }
 
 export function ArticleListItem({ article }: ArticleProps) {
+    const navigate = useNavigate();
+    const handleProceed = (e: any) => {
+        e.preventDefault();
+        navigate(generatePath('/admin/article/:id', { id: article.id.toString() }));
+    };
     return (
         <>
             <article className="overflow-hidden rounded-lg border border-gray-100 shadow-sm pb-12">
@@ -28,11 +33,12 @@ export function ArticleListItem({ article }: ArticleProps) {
                     </a>
 
                     <p className="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
-                        {article.content}
+                        <div className="no-tailwindcss-base"
+                            dangerouslySetInnerHTML={{ __html: article?.content ? article?.content : '' }}
+                        />
                     </p>
 
-                    <a
-                        href="#"
+                    <a onClick={handleProceed}
                         className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
                     >
                         Read more

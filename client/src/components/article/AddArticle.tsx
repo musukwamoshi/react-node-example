@@ -1,21 +1,36 @@
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode, useContext, useRef } from 'react';
 import { ErrorMessage, Field, Formik } from 'formik';
 import { Editor } from '@tinymce/tinymce-react';
 import { WithAdminNav } from '../navigation/WithAdminNav';
 import WithAuth from '../authentication/WithAuth';
+import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
+import { timeout } from '../../utils/common/delay';
+import { useNavigate } from 'react-router-dom';
+import { post } from '../../utils/api';
+import { AuthContext } from '../../utils/context/auth';
+import { Toaster } from 'react-hot-toast';
 
 export function AddArticle() {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const editorRef: any = useRef(null);
     const renderAddArticleForm = (): ReactNode => {
         return (
             <>
                 <div className="max-w-7xl mx-auto px-8 sm:px-6 md:px-8">
+                    <Toaster toastOptions={{
+                        duration: 5000,
+                        // Default options for specific types
+                        success: {
+                            duration: 3000,
+                        },
+                    }} />
                     <h1 className="text-2xl font-semibold text-gray-900">
                         Add Article
                     </h1>
                     <div className="rounded-lg bg-white p-8 shadow-lg lg:col-span-3 lg:p-12">
                         <Formik
-                            initialValues={{ title: '', platform: '' }}
+                            initialValues={{ title: '', platform: '', userId: null }}
                             validate={(values) => {
                                 const errors: any = {};
                                 if (!values.title) {
@@ -27,12 +42,25 @@ export function AddArticle() {
                                 }
                                 return errors;
                             }}
-                            onSubmit={async (values, { setSubmitting }) => {
-                                const articleObject = { title: `${values.title}`, platform: `${values.platform}`, content: `${editorRef.current.getContent()}` };
-                                const articleRequest = JSON.stringify(articleObject, null, 2);
-                                console.log(articleRequest);
-                                // const response = await post('/article/add', articleRequest);
-                                setSubmitting(false);
+                            onSubmit={async (values, { setSubmitting, resetForm }) => {
+                                try {
+                                    const articleRequest = { userId: user?.id, title: `${values.title}`, platform: `${values.platform}`, content: `${editorRef.current.getContent()}` };
+                                    const response = await post('/article/create', articleRequest);
+                                    if (response.success) {
+                                        const successMessage = 'Article was submitted successfully.You can now review';
+                                        notifyOnSuccess(successMessage);
+                                        resetForm({ values: { userId: null, title: '', platform: '' } });
+                                        setSubmitting(false);
+                                        await timeout(2000);
+                                        navigate('/admin/articles/review');
+                                    } else {
+                                        setSubmitting(false);
+                                        notifyOnFailure(response.message);
+                                    }
+                                } catch (err) {
+                                    setSubmitting(false);
+                                    notifyOnFailure('There was an error submitting the article.Please try again!');
+                                }
                             }}
                         >
                             {({

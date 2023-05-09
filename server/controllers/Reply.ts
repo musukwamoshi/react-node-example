@@ -3,11 +3,11 @@ import { dbClient } from '../db';
 
 
 export async function createReply(req: Request, res: Response): Promise<void> {
-    const { responderName, replyContentContent, commentId } = req.body;
+    const { responderName, replyContent, commentId } = req.body;
     const result = await dbClient.reply.create({
         data: {
             responderName,
-            replyContentContent,
+            replyContent,
             commentId
         }
     })
