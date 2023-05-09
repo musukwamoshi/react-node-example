@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { dbClient } from '../db';
+import { toNumber } from 'lodash';
 
 
 export async function createComment(req: Request, res: Response): Promise<void> {
@@ -8,7 +9,7 @@ export async function createComment(req: Request, res: Response): Promise<void> 
         data: {
             commenterName,
             commentContent,
-            articleId
+            articleId: toNumber(articleId)
         }
     })
     res.send({ data: result, success: true });
@@ -48,7 +49,7 @@ export async function getCommentsByArticleId(req: Request, res: Response): Promi
     const { articleId } = req.body;
     const comments = await dbClient.comment.findMany({
         where: {
-            id: articleId
+            id: toNumber(articleId)
         },
         include: { article: true }
 
