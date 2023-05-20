@@ -1,12 +1,7 @@
 import React from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
+import { IAuthor } from '../../common/Interfaces';
 
-interface IAuthor {
-    id: number,
-    firstName: string,
-    lastName: string,
-    email: string
-}
 
 export interface IArticle {
     id: number,
