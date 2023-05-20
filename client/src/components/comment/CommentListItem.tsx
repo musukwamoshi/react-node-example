@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { ReactNode, useContext } from 'react';
+import { post } from '../../utils/api';
+import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
+import { AuthContext } from '../../utils/context/auth';
 
 export interface IComment {
     id: number,
@@ -14,6 +17,35 @@ export interface CommentProps {
 }
 
 export function CommentListItem({ comment }: CommentProps) {
+    const { user } = useContext(AuthContext);
+    const handleApproveComment = async (): Promise<any> => {
+        try {
+            const successMessage = 'The article was approved successfully';
+            await post('/comment/status', { id: comment.id, status: true });
+            // setIsApproved(true);
+            notifyOnSuccess(successMessage);
+        } catch {
+            const errorMessage = 'The article was approved successfully';
+            console.log('Something went wrong please try again');
+            notifyOnFailure(errorMessage);
+        }
+    };
+
+    const renderApprovalButton = (): ReactNode => {
+        return (
+            <>
+                <a
+                    href="#"
+                    className="block rounded-lg bg-indigo-600 px-5 py-3 my-6 text-sm font-medium text-white"
+                    onClick={handleApproveComment}
+                >
+                    Approve
+                </a>
+            </>
+        );
+    };
+
+
     return (
         <>
             <article className="rounded-xl border-2 border-gray-100 bg-white">
@@ -53,11 +85,12 @@ export function CommentListItem({ comment }: CommentProps) {
 
                             <p className="hidden sm:block sm:text-xs sm:text-gray-500">
                                 Posted by
-                                <a href="#" className="font-medium underline hover:text-gray-700">
+                                <a href="#" className="ml-2 font-medium underline hover:text-gray-700">
                                     {comment.commenterName}
                                 </a>
                             </p>
                         </div>
+                        {user?.isAdmin ? renderApprovalButton() : null}
                     </div>
                 </div>
             </article>

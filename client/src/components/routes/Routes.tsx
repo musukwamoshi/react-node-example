@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Articles } from '../article/Articles';
+import { Articles } from '../adminside/Articles';
 import { Comments } from '../comment/Comments';
-import { AddArticle } from '../article/AddArticle';
-import { ReviewArticle } from '../article/ReviewArticle';
+import { AddArticle } from '../adminside/AddArticle';
+import { ReviewArticle } from '../adminside/ReviewArticle';
 import { Home } from '../clientside/article/Home';
 import { Login } from '../authentication/Login';
 import { SignUp } from '../authentication/SignUp';

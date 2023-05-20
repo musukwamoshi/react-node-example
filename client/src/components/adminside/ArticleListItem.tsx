@@ -1,12 +1,13 @@
 import React from 'react';
 import { generatePath, useNavigate } from 'react-router-dom';
+import { IAuthor } from '../common/Interfaces';
 
 export interface IArticle {
     id: number,
     title: string,
     content: string,
     datePublished: string,
-    author: object
+    author: IAuthor
 };
 
 export interface ArticleProps {
@@ -32,11 +33,11 @@ export function ArticleListItem({ article }: ArticleProps) {
                         </h3>
                     </a>
 
-                    <p className="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
-                        <div className="no-tailwindcss-base"
+                    <div className="mt-2 text-sm leading-relaxed text-gray-500 line-clamp-3">
+                        <p className="no-tailwindcss-base"
                             dangerouslySetInnerHTML={{ __html: article?.content ? article?.content : '' }}
                         />
-                    </p>
+                    </div>
 
                     <a onClick={handleProceed}
                         className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
@@ -50,6 +51,10 @@ export function ArticleListItem({ article }: ArticleProps) {
                             &rarr;
                         </span>
                     </a>
+
+                    <div className="text-xs font-medium text-gray-500 sm:mt-0">
+                        Author <a href="#" className="mt-6 underline hover:text-gray-700">{article?.author.firstName}</a>
+                    </div>
                 </div>
             </article>
         </>
