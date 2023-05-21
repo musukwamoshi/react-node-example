@@ -26,7 +26,20 @@ export function ReviewArticle() {
             // setIsApproved(true);
             notifyOnSuccess(successMessage);
         } catch {
-            const errorMessage = 'The article was approved successfully';
+            const errorMessage = 'The article was not approved successfully.Please try again';
+            console.log('Something went wrong please try again');
+            notifyOnFailure(errorMessage);
+        }
+    };
+
+    const handleDeleteArticle = async (): Promise<any> => {
+        try {
+            const successMessage = 'The article was deleted successfully';
+            await post('/article/delete', { id });
+            // setIsApproved(true);
+            notifyOnSuccess(successMessage);
+        } catch {
+            const errorMessage = 'The article was not deleted successfully.Please try again';
             console.log('Something went wrong please try again');
             notifyOnFailure(errorMessage);
         }
@@ -63,6 +76,12 @@ export function ReviewArticle() {
                             onClick={handleApproveArticle}
                         >
                             Approve
+                        </button>
+                        <button
+                            className="block rounded-lg bg-indigo-600 mx-5 px-5 py-3 my-6 text-sm font-medium text-white float-right"
+                            onClick={handleDeleteArticle}
+                        >
+                            Delete
                         </button>
                     </div>
                 </section>

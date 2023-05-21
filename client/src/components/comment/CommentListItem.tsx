@@ -18,25 +18,55 @@ export interface CommentProps {
 
 export function CommentListItem({ comment }: CommentProps) {
     const { user } = useContext(AuthContext);
+
     const handleApproveComment = async (): Promise<any> => {
         try {
-            const successMessage = 'The article was approved successfully';
+            const successMessage = 'The comment was approved successfully';
             await post('/comment/status', { id: comment.id, status: true });
             // setIsApproved(true);
             notifyOnSuccess(successMessage);
         } catch {
-            const errorMessage = 'The article was approved successfully';
+            const errorMessage = 'The comment was not approved successfully.Please try again.';
             console.log('Something went wrong please try again');
             notifyOnFailure(errorMessage);
         }
     };
+
+    const handleDeleteComment = async (): Promise<any> => {
+        try {
+            const successMessage = 'The comment was deleted successfully';
+            await post('/comment/delete', { id: comment.id });
+            // setIsApproved(true);
+            notifyOnSuccess(successMessage);
+        } catch {
+            const errorMessage = 'The comment was not deleted successfully.Please try again.';
+            console.log('Something went wrong please try again');
+            notifyOnFailure(errorMessage);
+        }
+    };
+
+
+    const renderDeleteButton = (): ReactNode => {
+        return (
+            <>
+                <a
+                    href="#"
+                    className="px-5 py-3 my-6 text-sm font-medium text-indigo-600"
+                    onClick={handleDeleteComment}
+                >
+                    Delete
+                </a>
+            </>
+        );
+    };
+
 
     const renderApprovalButton = (): ReactNode => {
         return (
             <>
                 <a
                     href="#"
-                    className="block rounded-lg bg-indigo-600 px-5 py-3 my-6 text-sm font-medium text-white"
+                    className="text-indigo-600 py-3 my-6 text-sm font-medium text-white"
                     onClick={handleApproveComment}
                 >
                     Approve
@@ -90,7 +120,9 @@ export function CommentListItem({ comment }: CommentProps) {
                                 </a>
                             </p>
                         </div>
-                        {user?.isAdmin ? renderApprovalButton() : null}
+                        <span>{user?.isAdmin ? renderApprovalButton() : null}
+                            {user?.isAdmin ? renderDeleteButton() : null}</span>
+
                     </div>
                 </div>
             </article>
