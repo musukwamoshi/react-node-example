@@ -17,12 +17,12 @@ export async function createComment(req: Request, res: Response): Promise<void> 
 
 export async function deleteComment(req: Request, res: Response): Promise<void> {
     const { id } = req.body;
-    const deletedUser = await dbClient.user.delete({
+    const deletedComment = await dbClient.comment.delete({
         where: {
             id: id,
         },
     })
-    res.send({ data: deletedUser, success: true });
+    res.send({ data: deletedComment, success: true });
 }
 
 export async function updateCommentStatus(req: Request, res: Response): Promise<void> {
