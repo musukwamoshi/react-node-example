@@ -49,7 +49,7 @@ export async function getCommentsByArticleId(req: Request, res: Response): Promi
     const { articleId } = req.body;
     const comments = await dbClient.comment.findMany({
         where: {
-            id: toNumber(articleId)
+            articleId: toNumber(articleId)
         },
         include: { article: true }
 
