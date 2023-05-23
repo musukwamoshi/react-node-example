@@ -48,7 +48,7 @@ export async function getRepliesByCommentId(req: Request, res: Response): Promis
     const { commentId } = req.body;
     const replies = await dbClient.reply.findMany({
         where: {
-            id: commentId
+            commentId: commentId
         },
         include: { comment: true }
 

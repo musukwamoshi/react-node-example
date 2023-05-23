@@ -11,6 +11,8 @@ import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notificatio
 export function ReviewArticle() {
     const [article, setArticle] = useState<IArticle | null>(null);
     // const [isApproved, setIsApproved] = useState<boolean>(false);
+    const [isApproveModalOpen, setIsApproveModalOpen] = useState<boolean>(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
     const { id } = useParams();
 
     const fetchArticle = async (): Promise<any> => {
@@ -45,6 +47,26 @@ export function ReviewArticle() {
         }
     };
 
+    const handleOpenApproveModal = async (): Promise<any> => {
+        setIsApproveModalOpen(true);
+    };
+
+
+    const handleCloseApproveModal = async (): Promise<any> => {
+        setIsApproveModalOpen(false);
+    };
+
+
+    const handleOpenDeleteModal = async (): Promise<any> => {
+        setIsDeleteModalOpen(true);
+    };
+
+
+    const handleCloseDeleteModal = async (): Promise<any> => {
+        setIsDeleteModalOpen(false);
+    };
+
+
     useEffectOnce(() => {
         fetchArticle();
     });
@@ -54,6 +76,62 @@ export function ReviewArticle() {
             <>
                 <section>
                     <div className="mx-auto max-w-screen-lg px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+                        {isDeleteModalOpen ? (
+                            <div className="rounded-lg bg-white p-8 shadow-2xl">
+                                <h2 className="text-lg font-bold">Are you sure you want to do that?</h2>
+
+                                <p className="mt-2 text-sm text-gray-500">
+                                    Doing that could have cause some issues elsewhere, are you 100% sure its
+                                    OK?
+                                </p>
+
+                                <div className="mt-4 flex gap-2">
+                                    <button
+                                        onClick={handleDeleteArticle}
+                                        type="button"
+                                        className="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600"
+                                    >
+                                        Yes, Im sure
+                                    </button>
+
+                                    <button
+                                        onClick={handleCloseDeleteModal}
+                                        type="button"
+                                        className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
+                                    >
+                                        No, go back
+                                    </button>
+                                </div>
+                            </div>
+                        ) : null}
+                        {isApproveModalOpen ? (
+                            <div className="rounded-lg bg-white p-8 shadow-2xl">
+                                <h2 className="text-lg font-bold">Are you sure you want to do that?</h2>
+
+                                <p className="mt-2 text-sm text-gray-500">
+                                    Doing that could have cause some issues elsewhere, are you 100% sure its
+                                    OK?
+                                </p>
+
+                                <div className="mt-4 flex gap-2">
+                                    <button
+                                        onClick={handleApproveArticle}
+                                        type="button"
+                                        className="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600"
+                                    >
+                                        Yes, Im sure
+                                    </button>
+
+                                    <button
+                                        onClick={handleCloseApproveModal}
+                                        type="button"
+                                        className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
+                                    >
+                                        No, go back
+                                    </button>
+                                </div>
+                            </div>
+                        ) : null}
                         <Toaster toastOptions={{
                             duration: 5000,
                             // Default options for specific types
@@ -73,13 +151,13 @@ export function ReviewArticle() {
                         </div>
                         <button
                             className="block rounded-lg bg-indigo-600 px-5 py-3 my-6 text-sm font-medium text-white float-right"
-                            onClick={handleApproveArticle}
+                            onClick={handleOpenApproveModal}
                         >
                             Approve
                         </button>
                         <button
                             className="block rounded-lg bg-indigo-600 mx-5 px-5 py-3 my-6 text-sm font-medium text-white float-right"
-                            onClick={handleDeleteArticle}
+                            onClick={handleOpenDeleteModal}
                         >
                             Delete
                         </button>
