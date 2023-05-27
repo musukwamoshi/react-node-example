@@ -2,6 +2,7 @@ import React, { ReactNode, useContext, useState } from 'react';
 import { post } from '../../utils/api';
 import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
 import { AuthContext } from '../../utils/context/auth';
+import ReactModal from 'react-modal';
 
 export interface IComment {
     id: number,
@@ -99,35 +100,12 @@ export function CommentListItem({ comment }: CommentProps) {
 
     return (
         <>
-            {isDeleteModalOpen ? (
-                <div className="rounded-lg bg-white p-8 shadow-2xl">
-                    <h2 className="text-lg font-bold">Are you sure you want to do that?</h2>
-
-                    <p className="mt-2 text-sm text-gray-500">
-                        Doing that could have cause some issues elsewhere, are you 100% sure its
-                        OK?
-                    </p>
-
-                    <div className="mt-4 flex gap-2">
-                        <button
-                            onClick={handleDeleteComment}
-                            type="button"
-                            className="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600"
-                        >
-                            Yes, Im sure
-                        </button>
-
-                        <button
-                            onClick={handleCloseDeleteModal}
-                            type="button"
-                            className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
-                        >
-                            No, go back
-                        </button>
-                    </div>
-                </div>
-            ) : null}
-            {isApproveModalOpen ? (
+            <ReactModal
+                ariaHideApp={false}
+                isOpen={isApproveModalOpen}
+                contentLabel="Approve Article?"
+                className="mx-auto max-w-screen-md px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+            >
                 <div className="rounded-lg bg-white p-8 shadow-2xl">
                     <h2 className="text-lg font-bold">Are you sure you want to do that?</h2>
 
@@ -154,7 +132,40 @@ export function CommentListItem({ comment }: CommentProps) {
                         </button>
                     </div>
                 </div>
-            ) : null}
+            </ReactModal>
+            <ReactModal
+                ariaHideApp={false}
+                isOpen={isDeleteModalOpen}
+                contentLabel="Delete Article"
+                className="mx-auto max-w-screen-md px-4 py-16 sm:px-6 sm:py-24 lg:px-8"
+            >
+                <div className="rounded-lg bg-white p-8 shadow-2xl">
+                    <h2 className="text-lg font-bold">Are you sure you want to do that?</h2>
+
+                    <p className="mt-2 text-sm text-gray-500">
+                        Doing that could have cause some issues elsewhere, are you 100% sure its
+                        OK?
+                    </p>
+
+                    <div className="mt-4 flex gap-2">
+                        <button
+                            onClick={handleDeleteComment}
+                            type="button"
+                            className="rounded bg-green-50 px-4 py-2 text-sm font-medium text-green-600"
+                        >
+                            Yes, Im sure
+                        </button>
+
+                        <button
+                            onClick={handleCloseDeleteModal}
+                            type="button"
+                            className="rounded bg-gray-50 px-4 py-2 text-sm font-medium text-gray-600"
+                        >
+                            No, go back
+                        </button>
+                    </div>
+                </div>
+            </ReactModal>
             <article className="rounded-xl border-2 border-gray-100 bg-white mt-3">
                 <div className="flex items-start p-6">
 
