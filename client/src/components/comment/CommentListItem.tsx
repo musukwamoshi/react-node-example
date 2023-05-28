@@ -45,7 +45,6 @@ export function CommentListItem({ comment }: CommentProps) {
         try {
             const successMessage = 'The comment was approved successfully';
             await post('/comment/status', { id: comment.id, status: true });
-            // setIsApproved(true);
             notifyOnSuccess(successMessage);
         } catch {
             const errorMessage = 'The comment was not approved successfully.Please try again.';
@@ -58,7 +57,6 @@ export function CommentListItem({ comment }: CommentProps) {
         try {
             const successMessage = 'The comment was deleted successfully';
             await post('/comment/delete', { id: comment.id });
-            // setIsApproved(true);
             notifyOnSuccess(successMessage);
         } catch {
             const errorMessage = 'The comment was not deleted successfully.Please try again.';

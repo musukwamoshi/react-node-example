@@ -15,6 +15,7 @@ import { PasswordReset } from '../authentication/PasswordReset';
 function AppRoutes() {
     return (
         <div>
+
             <Routes>
                 <Route path="/admin/signup" element={<SignUp />} />
                 <Route path="/admin/login" element={<Login />} />
@@ -27,6 +28,7 @@ function AppRoutes() {
                 <Route path="/about" element={<About />} />
                 <Route path="/article/:id" element={<ViewArticle />} />
             </Routes>
+
         </div>
     );
 }
