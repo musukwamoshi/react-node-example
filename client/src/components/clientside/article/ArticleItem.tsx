@@ -57,6 +57,7 @@ export function ArticleItem({ article }: ArticleProps) {
                         <div className="mt-4 sm:flex sm:items-center content-evenly sm:gap-2">
                             <div className="flex items-center text-gray-500">
                                 <a
+                                    href="#"
                                     onClick={handleProceed}
                                     className="group inline-flex items-center gap-1 text-sm font-medium text-blue-600"
                                 >
@@ -72,7 +73,7 @@ export function ArticleItem({ article }: ArticleProps) {
                             </div>
 
                             <p className="mt-2 text-xs font-medium text-gray-500 sm:mt-0">
-                                Author <a href="" className="underline hover:text-gray-700">{article?.author.firstName}</a>
+                                Author <a href="#" className="underline hover:text-gray-700">{article?.author.firstName}</a>
                             </p>
                         </div>
                     </div>

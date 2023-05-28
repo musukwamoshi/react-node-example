@@ -26,7 +26,6 @@ export function ReviewArticle() {
         try {
             const successMessage = 'The article was approved successfully';
             await post('/article/status', { id, status: true });
-            // setIsApproved(true);
             notifyOnSuccess(successMessage);
         } catch {
             const errorMessage = 'The article was not approved successfully.Please try again';
@@ -39,7 +38,6 @@ export function ReviewArticle() {
         try {
             const successMessage = 'The article was deleted successfully';
             await post('/article/delete', { id });
-            // setIsApproved(true);
             notifyOnSuccess(successMessage);
         } catch {
             const errorMessage = 'The article was not deleted successfully.Please try again';
