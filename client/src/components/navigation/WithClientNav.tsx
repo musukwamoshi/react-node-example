@@ -9,7 +9,7 @@ export function WithClientNav({ children }: any): ReactElement {
                 <div
                     className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4"
                 >
-                    <div className="flex w-0 flex-1 lg:hidden">
+                    {/* <div className="flex w-0 flex-1 lg:hidden">
                         <button className="rounded-full bg-gray-100 p-2 text-gray-600" type="button">
                             <span className="sr-only">Account</span>
                             <svg
@@ -27,13 +27,13 @@ export function WithClientNav({ children }: any): ReactElement {
                                 ></path>
                             </svg>
                         </button>
-                    </div>
+                    </div> */}
 
                     <div className="flex items-center gap-4">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                         </svg>
-                        <a href="#">
+                        <a href="/">
                             <span className="sr-only">Logo</span>
                             <span className="h-10 w-20 font-medium">briefdocs</span>
                         </a>
@@ -63,10 +63,10 @@ export function WithClientNav({ children }: any): ReactElement {
                     >
                         <a className="text-gray-900" href="/about">About</a>
                         <a className="text-gray-900" href="/">Articles</a>
-                        <a className="text-gray-900" href="">Use</a>
+                        <a className="text-gray-900" href="#">Use</a>
                     </nav>
 
-                    <div className="hidden items-center gap-4 lg:flex">
+                    {/* <div className="hidden items-center gap-4 lg:flex">
                         <form className="mb-0 hidden lg:flex">
                             <div className="relative">
                                 <input
@@ -96,13 +96,13 @@ export function WithClientNav({ children }: any): ReactElement {
                             </div>
                         </form>
 
-                        {/* <a
+                        <a
                             href="#"
                             className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white"
                         >
                             Sign up
-                        </a> */}
-                    </div>
+                        </a>
+                    </div> */}
                 </div>
 
                 <div className="border-t border-gray-100 lg:hidden">
