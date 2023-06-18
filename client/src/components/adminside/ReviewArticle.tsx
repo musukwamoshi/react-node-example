@@ -8,17 +8,21 @@ import { IArticle } from './ArticleListItem';
 import { Toaster } from 'react-hot-toast';
 import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
 import ReactModal from 'react-modal';
+import { Loader } from '../common/Loader';
 
 export function ReviewArticle() {
     const [article, setArticle] = useState<IArticle | null>(null);
+    const [isArticleLoading, setIsArticleLoading] = useState<boolean>(false);
     // const [isApproved, setIsApproved] = useState<boolean>(false);
     const [isApproveModalOpen, setIsApproveModalOpen] = useState<boolean>(false);
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
     const { id } = useParams();
 
     const fetchArticle = async (): Promise<any> => {
+        setIsArticleLoading(true);
         const response = await post('/article', { id });
         setArticle(response.data);
+        setIsArticleLoading(false);
     };
 
 
@@ -176,5 +180,5 @@ export function ReviewArticle() {
             </>
         );
     };
-    return <WithAuth><WithAdminNav>{renderViewArticle()}</WithAdminNav></WithAuth>;
+    return <WithAuth><WithAdminNav>{isArticleLoading ? <Loader /> : renderViewArticle()}</WithAdminNav></WithAuth>;
 }
