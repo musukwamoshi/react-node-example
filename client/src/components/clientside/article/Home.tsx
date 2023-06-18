@@ -53,7 +53,7 @@ export function Home() {
             <>
                 <section>
                     <div className="items-center">
-                        <form className="mt-16 lg:flex flex justify-center">
+                        <div className="mt-16 lg:w-120 lg:flex flex justify-center">
                             <span className="relative">
                                 <input
                                     className="h-10  w-96 rounded-lg border-gray-200 pr-10 text-sm placeholder-gray-300 focus:z-10"
@@ -81,7 +81,7 @@ export function Home() {
                                     </svg>
                                 </button>
                             </span>
-                        </form>
+                        </div>
 
                         {/* <a
                             href="#"
