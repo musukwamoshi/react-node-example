@@ -63,7 +63,7 @@ export function WithClientNav({ children }: any): ReactElement {
                     >
                         <a className="text-gray-900" href="/about">About</a>
                         <a className="text-gray-900" href="/">Articles</a>
-                        <a className="text-gray-900" href="#">Use</a>
+                        <a className="text-gray-900" href="/use">Use</a>
                     </nav>
 
                     {/* <div className="hidden items-center gap-4 lg:flex">
@@ -111,7 +111,7 @@ export function WithClientNav({ children }: any): ReactElement {
                     >
                         <a className="flex-shrink-0 pl-4 text-gray-900" href="/about">About</a>
                         <a className="flex-shrink-0 pl-4 text-gray-900" href="/">Articles</a>
-                        <a className="flex-shrink-0 pl-4 text-gray-900" href="">Use</a>
+                        <a className="flex-shrink-0 pl-4 text-gray-900" href="/use">Tools</a>
                     </nav>
                 </div>
             </header>
