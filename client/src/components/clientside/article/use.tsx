@@ -103,6 +103,12 @@ export function Use() {
                                         <div className="mt-1 text-sm text-gray-700 line-clamp-3">
                                             <p>I use this tool to quickly prototype javascript solutions in my local environment.</p>
                                         </div>
+                                        <h3 className="mt-4 text-md font-medium sm:text-xl">
+                                            Postman
+                                        </h3>
+                                        <div className="mt-1 text-sm text-gray-700 line-clamp-3">
+                                            <p>Allows me to quickly test api endpoints that I am working on.</p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="flex items-start">
