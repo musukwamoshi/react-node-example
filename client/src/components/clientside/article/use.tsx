@@ -10,7 +10,7 @@ export function Use() {
 
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold sm:text-4xl">
-                                Software I use, gadgets I love, and other tools  I recommend.
+                                Software I use, and other tools  I would recommend.
                             </h2>
                         </div>
 
