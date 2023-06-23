@@ -19,7 +19,7 @@ export function Use() {
                         </p>
                         <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-1 lg:gap-16">
                             <article className="ring-indigo-50">
-                                <div className="flex items-start">
+                                {/* <div className="flex items-start">
                                     <div
                                         className="hidden sm:grid sm:h-20 sm:w-50 sm:shrink-0 sm:place-content-center sm:border-indigo-500"
                                         aria-hidden="true"
@@ -49,7 +49,7 @@ export function Use() {
                                             <p>This display goes well with the Lenovo Legion 5.Clear and crisp with good brightness.</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                                 <div className="flex items-start">
                                     <div
                                         className="hidden sm:grid sm:h-20 sm:w-50 sm:shrink-0 sm:place-content-center sm:border-indigo-500"
