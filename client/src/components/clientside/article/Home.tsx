@@ -42,12 +42,12 @@ export function Home() {
                     <div className="mx-auto max-w-screen-lg px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold sm:text-4xl">
-                                I write articles about application development, devops and cloud computing.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             </h2>
                         </div>
 
                         <p className="hidden text-gray-500 md:mt-4 md:block">
-                            This a collection of articles based on my experiences in application development in chronological order.I try to keep them as short as possible.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
                         <div className="mt-8 grid grid-cols-1 gap-8 lg:grid-cols-1 lg:gap-16">
                             {articles.length > 0 ? renderArticleList() : renderDefault()}
