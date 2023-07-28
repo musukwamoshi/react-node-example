@@ -1,2 +1,2 @@
 # react-node-test-api
-A react express project using prisma
+A react express project using prisma and vite
