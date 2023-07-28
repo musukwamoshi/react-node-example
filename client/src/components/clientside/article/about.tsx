@@ -9,21 +9,21 @@ export function About() {
                     <div className="mx-auto max-w-screen-lg px-4 py-16 sm:px-6 sm:py-24 lg:px-8 justify-center">
                         <div className="max-w-3xl">
                             <h2 className="text-3xl font-bold sm:text-4xl py-6">
-                                I’m Moshi Musukwa. I live in Lusaka Zambia, and I turn business problems into software solutions.
+                                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga
                             </h2>
                         </div>
 
                         <p className="text-gray-500 md:mt-4 md:block">
-                            My gateway drug to programming was  Pascal as a part of an introduction to computing course. However I’m mostly self taught.
+                            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo
                         </p>
                         <p className="text-gray-500 md:mt-4 md:block">
-                            I have 4 years of software development experience. During that time I have worked with different tech stacks, some of which include Flutter, MERN, .NET Core and Amplify. I’ve worked on a wide variety of problems ranging from IoT processing to Data Engineering.
+                            Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem
                         </p>
                         <p className="text-gray-500 md:mt-4 md:block">
-                            When I’m not in front of a computer writing code, I like to play chess, and dabble in a  variety of computer games. You might also find my head buried in the latest issue of my favourite japanese manga.
+                            Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?
                         </p>
                         <p className="text-gray-500 md:mt-4 md:block">
-                            I hope my articles will save you hours of troubleshooting or hours of trying to piece together different pieces of documentation.If you have a any questions feel free to email me at musukwamoshi@gmail.com.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
                     </div>
                 </section>
