@@ -39,7 +39,9 @@ export function ArticleListItem({ article }: ArticleProps) {
                         />
                     </div>
 
-                    <a onClick={handleProceed}
+                    <a
+                        href="#"
+                        onClick={handleProceed}
                         className="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600"
                     >
                         Read more

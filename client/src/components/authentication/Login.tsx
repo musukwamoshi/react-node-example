@@ -2,7 +2,7 @@ import { Field, Formik } from 'formik';
 import React, { useContext } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { post } from '../../utils/api';
+import { get, post } from '../../utils/api';
 import { timeout } from '../../utils/common/delay';
 import { notifyOnFailure, notifyOnSuccess } from '../../utils/common/notifications';
 import { AuthContext } from '../../utils/context/auth';
@@ -47,12 +47,13 @@ export function Login() {
                                 const response = await post('/sessions', loginRequest);
                                 if (response.success) {
                                     const successMessage = 'Login successful.';
-                                    setSession(response.data);
+                                    const newSession = await get('/sessions');
+                                    setSession(newSession);
                                     notifyOnSuccess(successMessage);
                                     resetForm({ values: { email: '', password: '' } });
                                     setSubmitting(false);
-                                    await timeout(2000);
-                                    return navigate('/admin/articles/review', { replace: true });
+                                    await timeout(5000);
+                                    navigate('/admin/articles/review', { replace: true });
                                 } else {
                                     setSubmitting(false);
                                     notifyOnFailure(response.error);

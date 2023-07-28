@@ -10,11 +10,13 @@ import { SignUp } from '../authentication/SignUp';
 import { ViewArticle } from '../clientside/article/ViewArticle';
 import { About } from '../clientside/article/about';
 import { PasswordReset } from '../authentication/PasswordReset';
+import { Use } from '../clientside/article/use';
 
 
 function AppRoutes() {
     return (
         <div>
+
             <Routes>
                 <Route path="/admin/signup" element={<SignUp />} />
                 <Route path="/admin/login" element={<Login />} />
@@ -25,8 +27,10 @@ function AppRoutes() {
                 <Route path="/admin/article/:id" element={<ReviewArticle />} />
                 <Route path="/" element={<Home />} />
                 <Route path="/about" element={<About />} />
+                <Route path="/use" element={<Use />} />
                 <Route path="/article/:id" element={<ViewArticle />} />
             </Routes>
+
         </div>
     );
 }

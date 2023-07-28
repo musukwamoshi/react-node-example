@@ -60,3 +60,18 @@ export async function getArticleById(req: Request, res: Response): Promise<void>
     });
     res.send({ data: article, success: true });
 }
+
+export async function getArticleBySearchTerm(req: Request, res: Response): Promise<void> {
+    const { searchTerm } = req.body;
+    const article = await dbClient.article.findMany({
+        where: {
+            title: {
+                contains: searchTerm,
+                mode: 'insensitive'
+            }
+        },
+        include: { author: true },
+
+    });
+    res.send({ data: article, success: true });
+}
