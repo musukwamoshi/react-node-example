@@ -8,15 +8,19 @@ import { CustomTextArea } from '../../common/textarea';
 import { WithClientNav } from '../../navigation/WithClientNav';
 import { IArticle } from './ArticleItem';
 import { CommentListItem, IComment } from '../../comment/CommentListItem';
+import { Loader } from '../../common/Loader';
 
 export function ViewArticle() {
     const [article, setArticle] = useState<IArticle | null>(null);
+    const [isArticleLoading, setIsArticleLodaing] = useState<boolean>(false);
     const [comments, setComments] = useState<IComment[]>([]);
     const { id } = useParams();
 
     const fetchArticle = async (): Promise<any> => {
+        setIsArticleLodaing(true);
         const response = await post('/article', { id });
         setArticle(response.data);
+        setIsArticleLodaing(false);
     };
 
     const fetchComments = async (): Promise<any> => {
@@ -157,5 +161,5 @@ export function ViewArticle() {
             </>
         );
     };
-    return <WithClientNav>{renderViewArticle()}</WithClientNav>;
+    return <WithClientNav>{isArticleLoading ? <Loader /> : renderViewArticle()}</WithClientNav>;
 }

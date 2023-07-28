@@ -18,89 +18,42 @@ export const AdminNavBar = () => {
 		<>
 			<nav className="mt-5 flex-1 px-2 space-y-1">
 				<h1 className="text-3xl font-semibold text-white mb-5">
-					BriefDocs
+					briefdocs
 				</h1>
 				<a
 					href="/admin/articles/review"
 					className="bg-indigo-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
 				>
-					<svg
-						className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						aria-hidden="true"
-					>
-
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-						/>
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300">
+						<path strokeLinecap="round" strokeLinejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
 					</svg>
+
 					Articles
 				</a>
 
 				<Link to="/admin/article/add" className="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md">
-
-					<svg
-						className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						aria-hidden="true"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-						/>
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300">
+						<path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
 					</svg>
+
 					Add Article
 				</Link>
 
 				<Link to="/admin/comments/review"
 					className="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
 				>
-					<svg
-						className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						aria-hidden="true"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-						/>
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 flex-shrink-0 w-6 h-6 text-indigo-300" aria-hidden="true">
+						<path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
 					</svg>
+
 					Comments
 				</Link>
 
 				<Link to="#" onClick={handleLogOut}
 					className="text-white hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
 				>
-					<svg
-						className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-						aria-hidden="true"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth="2"
-							d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-						/>
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300">
+						<path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
 					</svg>
 					Log Out
 				</Link>

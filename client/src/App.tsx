@@ -4,6 +4,7 @@ import AppRoutes from './components/routes/Routes';
 import { get } from './utils/api';
 import { AuthContext, AuthContextData, Session } from './utils/context/auth';
 import { useEffectOnce } from './utils/hooks/useEffectOnce';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
 	// add  session initialization code
@@ -40,7 +41,9 @@ function App() {
 	return (
 		<>
 			<AuthContext.Provider value={session}>
-				<AppRoutes />
+				<BrowserRouter>
+					<AppRoutes />
+				</BrowserRouter>
 			</AuthContext.Provider>
 		</>
 

@@ -21,12 +21,12 @@ export async function createArticle(req: Request, res: Response): Promise<void> 
 
 export async function deleteArticle(req: Request, res: Response): Promise<void> {
     const { id } = req.body;
-    const deletedUser = await dbClient.article.delete({
+    const deletedArticle = await dbClient.article.delete({
         where: {
             id: id,
         },
     })
-    res.send({ data: deletedUser, success: true });
+    res.send({ data: deletedArticle, success: true });
 }
 
 export async function updateArticleStatus(req: Request, res: Response): Promise<void> {
@@ -56,6 +56,21 @@ export async function getArticleById(req: Request, res: Response): Promise<void>
             id: toNumber(id)
         },
         include: { comments: true },
+
+    });
+    res.send({ data: article, success: true });
+}
+
+export async function getArticleBySearchTerm(req: Request, res: Response): Promise<void> {
+    const { searchTerm } = req.body;
+    const article = await dbClient.article.findMany({
+        where: {
+            title: {
+                contains: searchTerm,
+                mode: 'insensitive'
+            }
+        },
+        include: { author: true },
 
     });
     res.send({ data: article, success: true });
