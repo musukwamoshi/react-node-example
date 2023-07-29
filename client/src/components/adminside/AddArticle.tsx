@@ -97,7 +97,7 @@ export function AddArticle() {
                                     <div className="py-4">
                                         <div>
                                             <Editor
-                                                apiKey="40q3t7wp28c78x0wqg1zyvs4t3psv0dna1rez169fv4z913w"
+                                                apiKey="insert-your-key-here"
                                                 onInit={(evt, editor) => { editorRef.current = editor; }}
                                                 initialValue="<p>This is the initial content of the editor.</p>"
                                                 init={{
